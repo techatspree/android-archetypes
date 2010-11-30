@@ -39,7 +39,7 @@ This archetype creates a multi-module project containing an android application 
       -DartifactId=my-android-project \
       -Dpackage=com.foo.bar.android
 
-The 'package' value is optional (by default use the groupId). You can also set the targetted Android platform with
+The 'package' value is optional (by default use the groupId). You can also set the targeted Android platform with
 -Dplatform=x. By default, it use 7 (android 2.1)
 
 Once generated, the application is ready to be built and tested. Start an android emulator, or plug an Android dev phone,
@@ -49,7 +49,6 @@ and launch:
     mvn clean install
 
 The application will be built, then the integration-tests will be built and executed on the Android device.
-
 
 Credits
 -------
