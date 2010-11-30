@@ -13,7 +13,7 @@
         <include>**/*.xml</include>
       </includes>
     </fileSet>
-	<fileSet filtered="false" encoding="UTF-8">
+    <fileSet filtered="false" encoding="UTF-8">
       <directory>res</directory>
       <includes>
         <include>**/*.png</include>
