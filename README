@@ -1,0 +1,57 @@
+This projects provides several Maven archetypes for Android. Those archtepyes allows to quickly start a Maven project
+to develop an android application.
+
+These artifacts are based on the maven-android-plugin (http://code.google.com/p/maven-android-plugin/).
+
+android-quickstart
+------------------
+The quickstart archetype creates a simple android application ready to be deployed on an android device. It's a pretty simple
+way to initiate an android project:
+
+    mvn archetype:generate \
+      -DarchetypeArtifactId=android-quickstart \
+      -DarchetypeGroupId=de.akquinet.android.archetypes
+      -DarchetypeVersion=0.9.0-SNAPSHOT \
+      -DgroupId=your.company \
+      -DartifactId=my-android-application \
+
+You can also set the created 'package' with -Dpackage=your.company.android. By default it uses the groupId.
+
+Once generated, the application is ready to be built and deployed. Start an android emulator, or plug an Android dev phone,
+and launch:
+
+    cd my-android-application
+    mvn clean install android:deploy
+
+The application will be built and deployed on the device.
+
+The android-with-test
+---------------------
+
+This archetype creates a multi-module project containing an android application and a project testing this application
+(integration tests).
+
+    mvn archetype:generate \
+      -DarchetypeArtifactId=android-with-test \
+      -DarchetypeGroupId=de.akquinet.android.archetypes \
+      -DarchetypeVersion=0.9.0-SNAPSHOT \
+      -DgroupId=com.foo.bar
+      -DartifactId=my-android-project \
+      -Dpackage=com.foo.bar.android
+
+The 'package' value is optional (by default use the groupId). You can also set the targetted Android platform with
+-Dplatform=x. By default, it use 7 (android 2.1)
+
+Once generated, the application is ready to be built and tested. Start an android emulator, or plug an Android dev phone,
+and launch:
+
+    cd my-android-project
+    mvn clean install
+
+The application will be built, then the integration-tests will be built and executed on the Android device.
+
+
+Credits
+-------
+The android-archetype-project is an open source project licensed under the Apache License 2.0.
+It is founded by akquinet (http://akquinet.de/en)
