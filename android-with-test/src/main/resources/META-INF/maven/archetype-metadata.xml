@@ -1,12 +1,12 @@
 <archetype>
   <id>android-with-test</id>
-  
+
   <requiredProperties>
     <requiredProperty key="platform" >
       <defaultValue>7</defaultValue>
     </requiredProperty>
   </requiredProperties>
-  
+
   <fileSets>
     <!-- application -->
     <fileSet filtered="true" packaged="true" encoding="UTF-8">
@@ -21,7 +21,7 @@
         <include>**/*.xml</include>
       </includes>
     </fileSet>
-	<fileSet filtered="false" encoding="UTF-8">
+    <fileSet filtered="false" encoding="UTF-8">
       <directory>application/res</directory>
       <includes>
         <include>**/*.png</include>
@@ -39,7 +39,7 @@
         <include>*.xml</include>
       </includes>
     </fileSet>
-    
+
     <!-- it -->
     <fileSet filtered="true" packaged="true" encoding="UTF-8">
       <directory>application-it/src/main/java</directory>
@@ -53,7 +53,7 @@
         <include>**/*.xml</include>
       </includes>
     </fileSet>
-	<fileSet filtered="false" encoding="UTF-8">
+    <fileSet filtered="false" encoding="UTF-8">
       <directory>application-it/res</directory>
       <includes>
         <include>**/*.png</include>
