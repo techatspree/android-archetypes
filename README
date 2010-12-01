@@ -1,4 +1,4 @@
-This projects provides several Maven archetypes for Android. Those archtepyes allows to quickly start a Maven project
+This projects provides several Maven archetypes for Android. Those archtetypes allows to quickly bootstrap a Maven project
 to develop an android application.
 
 These artifacts are based on the maven-android-plugin (http://code.google.com/p/maven-android-plugin/).
@@ -15,7 +15,7 @@ way to initiate an android project:
       -DgroupId=your.company \
       -DartifactId=my-android-application \
 
-You can also set the created 'package' with -Dpackage=your.company.android. By default it uses the groupId.
+You can also set the created 'package' with '-Dpackage=your.company.android'. By default it uses the given groupId.
 
 Once generated, the application is ready to be built and deployed. Start an android emulator, or plug an Android dev phone,
 and launch:
@@ -29,7 +29,7 @@ The android-with-test
 ---------------------
 
 This archetype creates a multi-module project containing an android application and a project testing this application
-(integration tests).
+(integration tests using instrumentation).
 
     mvn archetype:generate \
       -DarchetypeArtifactId=android-with-test \
@@ -40,7 +40,7 @@ This archetype creates a multi-module project containing an android application 
       -Dpackage=com.foo.bar.android
 
 The 'package' value is optional (by default use the groupId). You can also set the targeted Android platform with
--Dplatform=x. By default, it use 7 (android 2.1)
+'-Dplatform=x'. By default, it use 7 (android 2.1)
 
 Once generated, the application is ready to be built and tested. Start an android emulator, or plug an Android dev phone,
 and launch:
@@ -54,3 +54,7 @@ Credits
 -------
 The android-archetype-project is an open source project licensed under the Apache License 2.0.
 It is founded by akquinet (http://akquinet.de/en)
+
+Technical Notes
+---------------
+* As the archetypes used the new archetype format, they don't work with the deprecated goal 'archetype:create'
