@@ -1,7 +1,7 @@
 This projects provides several Maven archetypes for Android. Those archetypes allows to quickly bootstrap a Maven project
 to develop an android application.
 
-These artifacts are based on the maven-android-plugin (http://code.google.com/p/maven-android-plugin/).
+These artifacts are based on the maven-android-plugin (http://code.google.com/p/maven-android-plugin/). It currently uses the 2.8.0 version.
 
 android-quickstart
 ------------------
@@ -58,3 +58,4 @@ It is founded by akquinet (http://akquinet.de/en)
 Technical Notes
 ---------------
 * As the archetypes used the new archetype format, they don't work with the deprecated goal 'archetype:create'
+
