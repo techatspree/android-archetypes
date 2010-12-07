@@ -1,7 +1,7 @@
 This projects provides several Maven archetypes for Android. Those archetypes allows to quickly bootstrap a Maven project
 to develop an android application.
 
-These artifacts are based on the maven-android-plugin (http://code.google.com/p/maven-android-plugin/). It currently uses the 2.8.1 version.
+These artifacts are based on the maven-android-plugin (http://code.google.com/p/maven-android-plugin/). It currently uses the 2.8.2 version.
 
 android-quickstart
 ------------------
@@ -11,7 +11,7 @@ way to initiate an android project:
     mvn archetype:generate \
       -DarchetypeArtifactId=android-quickstart \
       -DarchetypeGroupId=de.akquinet.android.archetypes \
-      -DarchetypeVersion=1.0.1 \
+      -DarchetypeVersion=1.0.2 \
       -DgroupId=your.company \
       -DartifactId=my-android-application
 
@@ -34,7 +34,7 @@ This archetype creates a multi-module project containing an android application 
     mvn archetype:generate \
       -DarchetypeArtifactId=android-with-test \
       -DarchetypeGroupId=de.akquinet.android.archetypes \
-      -DarchetypeVersion=1.0.1 \
+      -DarchetypeVersion=1.0.2 \
       -DgroupId=com.foo.bar \
       -DartifactId=my-android-project \
       -Dpackage=com.foo.bar.android
