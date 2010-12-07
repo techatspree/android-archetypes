@@ -1,3 +1,7 @@
+Version 1.0.1
+-------------
+  * Update to the maven-android-plugin 2.8.1 to supports Android 2.3 (Gingerbread)
+
 Version 1.0.0
 -------------
   * Initial release
