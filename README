@@ -11,7 +11,7 @@ way to initiate an android project:
     mvn archetype:generate \
       -DarchetypeArtifactId=android-quickstart \
       -DarchetypeGroupId=de.akquinet.android.archetypes \
-      -DarchetypeVersion=1.0.2 \
+      -DarchetypeVersion=1.0.3 \
       -DgroupId=your.company \
       -DartifactId=my-android-application
 
@@ -34,7 +34,7 @@ This archetype creates a multi-module project containing an android application 
     mvn archetype:generate \
       -DarchetypeArtifactId=android-with-test \
       -DarchetypeGroupId=de.akquinet.android.archetypes \
-      -DarchetypeVersion=1.0.2 \
+      -DarchetypeVersion=1.0.3 \
       -DgroupId=com.foo.bar \
       -DartifactId=my-android-project \
       -Dpackage=com.foo.bar.android
