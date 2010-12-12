@@ -61,7 +61,7 @@ This archetype extends `android-with-test` with release management.
     mvn archetype:generate \
       -DarchetypeArtifactId=android-full \
       -DarchetypeGroupId=de.akquinet.android.archetypes \
-      -DarchetypeVersion=1.0.3 \
+      -DarchetypeVersion=1.0.4-SNAPSHOT \
       -DgroupId=com.foo.bar \
       -DartifactId=my-android-project \
       -Dpackage=com.foo.bar.android
@@ -102,7 +102,7 @@ or directly pass those properties through the command line:
 Credits
 -------
 The android-archetype-project is an open source project licensed under the Apache License 2.0.
-It is founded by akquinet (http://akquinet.de/en)
+It is founded by [akquinet](http://akquinet.de/en)
 
 Technical Notes
 ---------------
