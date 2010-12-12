@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>${groupId}</groupId>
+  <artifactId>${artifactId}-parent</artifactId>
+  <version>${version}</version>
+  <packaging>pom</packaging>
+  <name>${artifactId} - Parent</name>
+
+  <modules>
+    <module>application</module>
+    <module>application-it</module>
+  </modules>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.google.android</groupId>
+        <artifactId>android</artifactId>
+        <version>2.2.1</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.google.android</groupId>
+        <artifactId>android-test</artifactId>
+        <version>2.2.1</version>
+        <scope>provided</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+          <artifactId>maven-android-plugin</artifactId>
+          <version>2.8.3</version>
+          <inherited>true</inherited>
+          <configuration>
+            <androidManifestFile>${project.basedir}/AndroidManifest.xml</androidManifestFile>
+            <assetsDirectory>${project.basedir}/assets</assetsDirectory>
+            <resourceDirectory>${project.basedir}/res</resourceDirectory>
+            <nativeLibrariesDirectory>${project.basedir}/src/main/native</nativeLibrariesDirectory>
+            <sdk>
+              <platform>${platform}</platform>
+            </sdk>
+            <deleteConflictingFiles>true</deleteConflictingFiles>
+            <undeployBeforeDeploy>true</undeployBeforeDeploy>
+          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>2.3.2</version>
+          <inherited>true</inherited>
+          <configuration>
+            <source>1.5</source>
+            <target>1.5</target>
+          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>1.0</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.1</version>
+          <configuration>
+            <autoVersionSubmodules>true</autoVersionSubmodules>
+          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-jarsigner-plugin</artifactId>
+          <version>1.2</version>
+          <inherited>true</inherited>
+          <configuration>
+            <archive>${project.build.directory}/${project.build.finalName}.${project.packaging}</archive>
+            <verbose>true</verbose>
+            <certs>true</certs>
+            <keystore>${android.sign.keystore}</keystore>
+            <alias>${android.sign.alias}</alias>
+            <storepass>${android.sign.storepass}</storepass>
+            <keypass>${android.sign.keypass}</keypass>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>com.pyx4me</groupId>
+          <artifactId>proguard-maven-plugin</artifactId>
+          <version>2.0.4</version>
+          <dependencies>
+            <dependency>
+              <groupId>net.sf.proguard</groupId>
+              <artifactId>proguard</artifactId>
+              <version>4.4</version>
+              <scope>runtime</scope>
+            </dependency>
+          </dependencies>
+          <configuration>
+            <proguardVersion>4.4</proguardVersion>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>release</id>
+      <activation>
+        <property>
+          <name>performRelease</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>enforce-signing-properties</id>
+                <goals>
+                  <goal>enforce</goal>
+                </goals>
+                <configuration>
+                  <rules>
+                    <requireProperty>
+                      <property>android.sign.keystore</property>
+                      <message>The 'android.sign.keystore' property is missing. It must contain the path to the keystore used to sign the application.</message>
+                    </requireProperty>
+                    <requireFilesExist>
+                      <files>
+                        <file>${android.sign.keystore}</file>
+                      </files>
+                      <message>The 'android.sign.keystore' property does not point to a file. It must contain the path to the keystore used to sign the application.</message>
+                    </requireFilesExist>
+                    <requireProperty>
+                      <property>android.sign.alias</property>
+                      <message>The 'android.sign.alias' property is missing. It must contain the key alias used to sign the application.</message>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>android.sign.storepass</property>
+                      <message>The 'android.sign.storepass' property is missing. It must contain the password of the keystore used to sign the application.
+                      </message>
+                    </requireProperty>
+                    <requireProperty>
+                      <property>android.sign.keypass</property>
+                      <message>The 'android.sign.keypass' property is missing. It must contain the password of the key used to sign the application.</message>
+                    </requireProperty>
+                  </rules>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+</project>

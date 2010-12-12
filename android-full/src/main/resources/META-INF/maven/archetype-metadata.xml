@@ -1,0 +1,70 @@
+<archetype>
+  <id>android-with-test</id>
+
+  <requiredProperties>
+    <requiredProperty key="platform" >
+      <defaultValue>7</defaultValue>
+    </requiredProperty>
+  </requiredProperties>
+
+  <fileSets>
+    <!-- application -->
+    <fileSet filtered="true" packaged="true" encoding="UTF-8">
+      <directory>application/src/main/java</directory>
+      <includes>
+        <include>**/*.java</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>application/res</directory>
+      <includes>
+        <include>**/*.xml</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="false" encoding="UTF-8">
+      <directory>application/res</directory>
+      <includes>
+        <include>**/*.png</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="false" encoding="UTF-8">
+      <directory>application/assets</directory>
+      <includes>
+        <include>**/*</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>application</directory>
+      <includes>
+        <include>*.xml</include>
+        <include>*.conf</include>
+      </includes>
+    </fileSet>
+
+    <!-- it -->
+    <fileSet filtered="true" packaged="true" encoding="UTF-8">
+      <directory>application-it/src/main/java</directory>
+      <includes>
+        <include>**/*.java</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>application-it/res</directory>
+      <includes>
+        <include>**/*.xml</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="false" encoding="UTF-8">
+      <directory>application-it/res</directory>
+      <includes>
+        <include>**/*.png</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>application-it</directory>
+      <includes>
+        <include>*.xml</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+</archetype>
