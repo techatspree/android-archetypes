@@ -53,13 +53,13 @@ and launch:
 
 The application will be built, then the integration-tests will be built and executed on the Android device.
 
-The android-full archetype
+The android-release archetype
 --------------------------
 
 This archetype extends `android-with-test` with release management.
 
     mvn archetype:generate \
-      -DarchetypeArtifactId=android-full \
+      -DarchetypeArtifactId=android-release \
       -DarchetypeGroupId=de.akquinet.android.archetypes \
       -DarchetypeVersion=1.0.4-SNAPSHOT \
       -DgroupId=com.foo.bar \
@@ -83,21 +83,32 @@ You will have to add a profile to your `settings.xml` containing the signing inf
     <profile>
       <id>android-release</id>
       <properties>
-        <android.sign.keystore>/path/to/keystore</android.sign.keystore>
-        <android.sign.alias>key alias</android.sign.alias>
-        <android.sign.storepass>keystore password</android.sign.storepass>
-        <android.sign.keypass>key password</android.sign.keypass>
+        <sign.keystore>/path/to/keystore</android.sign.keystore>
+        <sign.alias>key alias</android.sign.alias>
+        <sign.storepass>keystore password</android.sign.storepass>
+        <sign.keypass>key password</android.sign.keypass>
       </properties>
     </profile>
 
 or directly pass those properties through the command line:
 
     mvn release:prepare
-    mvn release:perform -Dandroid.sign.keystore=/path/to/keystore \
-                        -Dandroid.sign.alias=key-alias \
-                        -Dandroid.sign.storepass=keystore-password \
-                        -Dandroid.sign.keypass=key-password
+    mvn release:perform -Dsign.keystore=/path/to/keystore \
+                        -Dsign.alias=key-alias \
+                        -Dsign.storepass=keystore-password \
+                        -Dsign.keypass=key-password
     mvn release:clean
+
+The archetype contains a test key store which *MUST NOT BE USED IN PRODUCTION*. However you can use it for testing:
+
+    mvn clean install -Prelease \
+    -Dsign.keystore=PATH_OF_THE_PROJECT/my-android-project/test-key.keystore \
+    -Dsign.alias=mykey \
+    -Dsign.storepass=testtest \
+    -Dsign.keypass=testtest
+
+Be aware that Android cannot re-deploy artifacts using a different key, so be sure to undeploy all artifacts before running the
+release.
 
 Credits
 -------
