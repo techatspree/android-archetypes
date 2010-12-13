@@ -159,6 +159,47 @@
         </plugins>
       </build>
     </profile>
+    <profile>
+      <id>linux</id>
+      <activation>
+        <os>
+          <family>unix</family>
+        </os>
+      </activation>
+      <properties>
+        <rt.jar.path>${env.JAVA_HOME}/jre/lib/rt.jar</rt.jar.path>
+        <jsse.jar.path>${env.JAVA_HOME}/jre/lib/jsse.jar</jsse.jar.path>
+      </properties>
+    </profile>
+    <!-- mac profile has to be after unix since running on mac will trigger
+      both -->
+    <profile>
+      <id>mac</id>
+      <activation>
+        <os>
+          <family>mac</family>
+        </os>
+      </activation>
+      <properties>
+        <!-- absolute path -->
+        <!--<rt.jar.path>/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Classes/classes.jar</rt.jar.path> -->
+        <!-- or with JAVA_HOME /System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home/ -->
+        <rt.jar.path>${env.JAVA_HOME}/../Classes/classes.jar</rt.jar.path>
+        <jsse.jar.path>${env.JAVA_HOME}/../Classes/jsse.jar</jsse.jar.path>
+      </properties>
+    </profile>
+    <profile>
+      <id>windows</id>
+      <activation>
+        <os>
+          <family>windows</family>
+        </os>
+      </activation>
+      <properties>
+        <rt.jar.path>${env.JAVA_HOME}/jre/lib/rt.jar</rt.jar.path>
+        <jsse.jar.path>${env.JAVA_HOME}/jre/lib/jsse.jar</jsse.jar.path>
+      </properties>
+    </profile>
   </profiles>
 
 </project>
