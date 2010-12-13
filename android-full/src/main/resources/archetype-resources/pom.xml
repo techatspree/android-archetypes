@@ -129,27 +129,27 @@
                 <configuration>
                   <rules>
                     <requireProperty>
-                      <property>android.sign.keystore</property>
-                      <message>The 'android.sign.keystore' property is missing. It must contain the path to the keystore used to sign the application.</message>
+                      <property>sign.keystore</property>
+                      <message>The 'sign.keystore' property is missing. It must contain the path to the keystore used to sign the application.</message>
                     </requireProperty>
                     <requireFilesExist>
                       <files>
-                        <file>${android.sign.keystore}</file>
+                        <file>${sign.keystore}</file>
                       </files>
-                      <message>The 'android.sign.keystore' property does not point to a file. It must contain the path to the keystore used to sign the application.</message>
+                      <message>The 'sign.keystore' property does not point to a file. It must contain the path to the keystore used to sign the application.</message>
                     </requireFilesExist>
                     <requireProperty>
-                      <property>android.sign.alias</property>
-                      <message>The 'android.sign.alias' property is missing. It must contain the key alias used to sign the application.</message>
+                      <property>sign.alias</property>
+                      <message>The 'sign.alias' property is missing. It must contain the key alias used to sign the application.</message>
                     </requireProperty>
                     <requireProperty>
-                      <property>android.sign.storepass</property>
-                      <message>The 'android.sign.storepass' property is missing. It must contain the password of the keystore used to sign the application.
+                      <property>sign.storepass</property>
+                      <message>The 'sign.storepass' property is missing. It must contain the password of the keystore used to sign the application.
                       </message>
                     </requireProperty>
                     <requireProperty>
-                      <property>android.sign.keypass</property>
-                      <message>The 'android.sign.keypass' property is missing. It must contain the password of the key used to sign the application.</message>
+                      <property>sign.keypass</property>
+                      <message>The 'sign.keypass' property is missing. It must contain the password of the key used to sign the application.</message>
                     </requireProperty>
                   </rules>
                 </configuration>
