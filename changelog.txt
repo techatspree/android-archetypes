@@ -1,6 +1,6 @@
 Version 1.0.4
 -------------
-  * Add the android-full archetype (thanks Julien Nicoulaud)
+  * Add the android-release archetype (thanks Julien Nicoulaud)
 
 Version 1.0.3
 -------------
