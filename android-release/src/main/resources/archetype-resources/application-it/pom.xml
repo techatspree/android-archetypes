@@ -60,12 +60,6 @@
   <profiles>
     <profile>
       <id>release</id>
-      <activation>
-        <property>
-          <name>performRelease</name>
-          <value>true</value>
-        </property>
-      </activation>
       <properties>
         <!--
           When running a release, we must deployed the final artifact (signed and zipaligned).
