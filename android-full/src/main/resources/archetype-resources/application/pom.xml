@@ -104,11 +104,35 @@
             <configuration>
               <zipalign>
                 <verbose>true</verbose>
+                <inputApk>${project.build.directory}/${project.artifactId}-${project.version}.apk</inputApk>
+                <outputApk>${project.build.directory}/${project.artifactId}-${project.version}-signed-aligned.apk</outputApk>
               </zipalign>
               <sign>
                 <debug>false</debug>
               </sign>
             </configuration>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <configuration>
+              <artifacts>
+                <artifact>
+                  <file>${project.build.directory}/proguard_map.txt</file>
+                  <type>map</type>
+                  <classifier>release</classifier>
+                </artifact>
+              </artifacts>
+            </configuration>
+            <executions>
+              <execution>
+                <id>attach-signed-aligned</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>attach-artifact</goal>
+                </goals>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
