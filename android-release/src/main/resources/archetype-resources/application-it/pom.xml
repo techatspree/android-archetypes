@@ -15,6 +15,14 @@
   <packaging>apk</packaging>
   <name>${artifactId} - Integration tests</name>
 
+  <properties>
+      <!--
+        When not running a release, we are deploying the plain artifact (so no classifier)
+        This is overridden during the release.
+      -->
+      <zipaligned-classifier></zipaligned-classifier>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>com.google.android</groupId>
@@ -29,6 +37,7 @@
       <artifactId>${artifactId}</artifactId>
       <type>apk</type>
       <version>${version}</version>
+      <classifier>${zipaligned-classifier}</classifier> <!--  classifier set according to the ran profile -->
     </dependency>
     <dependency>
       <groupId>${groupId}</groupId>
@@ -57,6 +66,12 @@
           <value>true</value>
         </property>
       </activation>
+      <properties>
+        <!--
+          When running a release, we must deployed the final artifact (signed and zipaligned).
+        -->
+        <zipaligned-classifier>aligned</zipaligned-classifier>
+      </properties>
       <build>
         <plugins>
           <plugin>
