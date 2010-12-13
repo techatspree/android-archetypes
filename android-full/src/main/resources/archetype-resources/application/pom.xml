@@ -54,14 +54,27 @@
                   <goal>proguard</goal>
                 </goals>
                 <configuration>
+                  <proguardVersion>4.4</proguardVersion>
+                  <maxMemory>256m</maxMemory>
                   <injar>android-classes</injar>
                   <libs>
-                    <lib>${java.home}/lib/rt.jar</lib>
+                    <lib>${rt.jar.path}</lib>
+                    <lib>${jsse.jar.path}</lib>
                   </libs>
+                  <obfuscate>true</obfuscate>
+                  <addMavenDescriptor>false</addMavenDescriptor>
                   <proguardInclude>${project.basedir}/proguard.conf</proguardInclude>
                 </configuration>
               </execution>
             </executions>
+            <dependencies>
+              <dependency>
+                <groupId>net.sf.proguard</groupId>
+                <artifactId>proguard</artifactId>
+                <version>4.4</version>
+                <scope>runtime</scope>
+              </dependency>
+            </dependencies>
           </plugin>
           <plugin>
             <artifactId>maven-jarsigner-plugin</artifactId>
