@@ -8,6 +8,14 @@
   </requiredProperties>
 
   <fileSets>
+    <!-- Key Store -->
+    <fileSet filterted="false">
+      <directory></directory>
+      <includes>
+          <include>test-key.keystore</include>
+      </includes>
+    </fileSet>
+
     <!-- application -->
     <fileSet filtered="true" packaged="true" encoding="UTF-8">
       <directory>application/src/main/java</directory>
