@@ -76,13 +76,15 @@
           <version>1.2</version>
           <inherited>true</inherited>
           <configuration>
+            <removeExistingSignatures>true</removeExistingSignatures>
+            <archiveDirectory />
             <archive>${project.build.directory}/${project.build.finalName}.${project.packaging}</archive>
             <verbose>true</verbose>
             <certs>true</certs>
-            <keystore>${android.sign.keystore}</keystore>
-            <alias>${android.sign.alias}</alias>
-            <storepass>${android.sign.storepass}</storepass>
-            <keypass>${android.sign.keypass}</keypass>
+            <keystore>${sign.keystore}</keystore>
+            <alias>${sign.alias}</alias>
+            <storepass>${sign.storepass}</storepass>
+            <keypass>${sign.keypass}</keypass>
           </configuration>
         </plugin>
         <plugin>
