@@ -83,10 +83,10 @@ You will have to add a profile to your `settings.xml` containing the signing inf
     <profile>
       <id>android-release</id>
       <properties>
-        <sign.keystore>/path/to/keystore</android.sign.keystore>
-        <sign.alias>key alias</android.sign.alias>
-        <sign.storepass>keystore password</android.sign.storepass>
-        <sign.keypass>key password</android.sign.keypass>
+        <sign.keystore>/path/to/keystore</sign.keystore>
+        <sign.alias>key alias</sign.alias>
+        <sign.storepass>keystore password</sign.storepass>
+        <sign.keypass>key password</sign.keypass>
       </properties>
     </profile>
 
