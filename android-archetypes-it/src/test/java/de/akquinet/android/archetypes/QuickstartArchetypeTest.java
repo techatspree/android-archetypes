@@ -10,7 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 
-public class QuickstartArtifactTest {
+public class QuickstartArchetypeTest {
 
     @Before
     public void setUp() {
