@@ -1,6 +1,7 @@
 Version 1.0.5
 -------------
-
+   * Fix archetype descriptors to be usable from m2eclipse
+   https://github.com/akquinet/android-archetypes/issues/issue/4
 
 Version 1.0.4
 -------------
