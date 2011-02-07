@@ -1,5 +1,6 @@
-<archetype>
-  <id>android-full</id>
+<archetype-descriptor xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
+  name="android-full">
 
   <requiredProperties>
     <requiredProperty key="platform" >
@@ -9,7 +10,7 @@
 
   <fileSets>
     <!-- Key Store -->
-    <fileSet filterted="false">
+    <fileSet filtered="false">
       <directory></directory>
       <includes>
           <include>test-key.keystore</include>
@@ -75,4 +76,4 @@
       </includes>
     </fileSet>
   </fileSets>
-</archetype>
+</archetype-descriptor>
