@@ -36,6 +36,7 @@
     <module>android-quickstart</module>
     <module>android-with-test</module>
     <module>android-release</module>
+    <module>android-archetypes-it</module>
   </modules>
 
   <organization>
