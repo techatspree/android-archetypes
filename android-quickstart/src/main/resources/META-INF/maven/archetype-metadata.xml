@@ -1,5 +1,7 @@
-<archetype>
-  <id>android-quickstart</id>
+<archetype-descriptor xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
+  name="android-quickstart">
+
   <requiredProperties>
     <requiredProperty key="platform" >
       <defaultValue>7</defaultValue>
@@ -44,4 +46,4 @@
       </includes>
     </fileSet>
   </fileSets>
-</archetype>
+</archetype-descriptor>
