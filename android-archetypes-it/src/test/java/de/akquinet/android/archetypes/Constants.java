@@ -14,7 +14,6 @@
  */
 package de.akquinet.android.archetypes;
 
-import java.util.Properties;
 
 public class Constants {
 
