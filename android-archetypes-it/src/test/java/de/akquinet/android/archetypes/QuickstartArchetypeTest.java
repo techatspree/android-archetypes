@@ -29,14 +29,14 @@ public class QuickstartArchetypeTest {
     @Before
     public void setUp() {
         if (System.getProperty("archetype.version") == null) {
-            System.setProperty("archetype.version", "1.5.0-SNAPSHOT");
+            System.setProperty("archetype.version", "1.0.5-SNAPSHOT");
         }
     }
 
     /**
      * Checks the quick-start archetype with no parameter.
-     * @throws VerificationException
-     * @throws IOException
+     * @throws IOException a file cannot be read
+     * @throws VerificationException the maven launch failed
      */
     @Test
     public void testQuickStartDefault() throws VerificationException, IOException {
@@ -56,6 +56,8 @@ public class QuickstartArchetypeTest {
         cli.add("-DgroupId=" + Constants.TEST_GROUP_ID);
         cli.add("-DartifactId=" + Constants.TEST_ARTIFACT_ID);
         cli.add("-DinteractiveMode=false");
+        cli.add("-DarchetypeCatalog=local");
+        cli.add("-o");
 
         verifier.executeGoal("org.apache.maven.plugins:maven-archetype-plugin:2.0:generate");
 
@@ -74,6 +76,9 @@ public class QuickstartArchetypeTest {
         Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<platform>7</platform>");
         Helper.assertContains(new File("target/it/quickstart-default/android-test/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
         Helper.assertContains(new File("target/it/quickstart-default/android-test/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
+
+        // Check that the Eclipse file is created (default.properties)
+        Helper.assertContains(new File("target/it/quickstart-default/android-test/default.properties"), "target=android-7");
     }
 
     /**
@@ -100,6 +105,7 @@ public class QuickstartArchetypeTest {
         cli.add("-DartifactId=" + Constants.TEST_ARTIFACT_ID);
         cli.add("-DinteractiveMode=false");
         cli.add("-Dplatform=8");
+        cli.add("-DarchetypeCatalog=local");
 
         verifier.executeGoal("org.apache.maven.plugins:maven-archetype-plugin:2.0:generate");
 
@@ -118,6 +124,9 @@ public class QuickstartArchetypeTest {
         Helper.assertContains(new File("target/it/quickstart-with-platform/android-test/pom.xml"), "<platform>8</platform>");
         Helper.assertContains(new File("target/it/quickstart-with-platform/android-test/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
         Helper.assertContains(new File("target/it/quickstart-with-platform/android-test/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
+
+        // Check that the Eclipse file is created (default.properties)
+        Helper.assertContains(new File("target/it/quickstart-with-platform/android-test/default.properties"), "target=android-8");
     }
 
     /**
@@ -163,6 +172,7 @@ public class QuickstartArchetypeTest {
         Helper.assertContains(new File("target/it/quickstart-with-platform-and-package/android-test/pom.xml"), "<platform>8</platform>");
         Helper.assertContains(new File("target/it/quickstart-with-platform-and-package/android-test/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
         Helper.assertContains(new File("target/it/quickstart-with-platform-and-package/android-test/AndroidManifest.xml"), "package=\"foo\"");
+
     }
 
 
