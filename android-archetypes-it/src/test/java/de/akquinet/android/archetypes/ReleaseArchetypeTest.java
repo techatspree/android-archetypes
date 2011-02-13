@@ -29,7 +29,7 @@ public class ReleaseArchetypeTest {
     @Before
     public void setUp() {
         if (System.getProperty("archetype.version") == null) {
-            System.setProperty("archetype.version", "1.5.0-SNAPSHOT");
+            System.setProperty("archetype.version", "1.0.5-SNAPSHOT");
         }
     }
 
@@ -56,6 +56,8 @@ public class ReleaseArchetypeTest {
         cli.add("-DgroupId=" + Constants.TEST_GROUP_ID);
         cli.add("-DartifactId=" + Constants.TEST_ARTIFACT_ID);
         cli.add("-DinteractiveMode=false");
+        cli.add("-DarchetypeCatalog=local");
+        cli.add("-DarchetypeRepository=local");
 
         verifier.executeGoal("org.apache.maven.plugins:maven-archetype-plugin:2.0:generate");
 
@@ -94,6 +96,9 @@ public class ReleaseArchetypeTest {
         Helper.assertContains(new File("target/it/release-default/android-test/application-it/AndroidManifest.xml"), "<uses-library android:name=\"android.test.runner\" />");
         Helper.assertContains(new File("target/it/release-default/android-test/application-it/AndroidManifest.xml"), "<instrumentation android:targetPackage=\"android.archetypes.test\"");
 
+        // Check that the Eclipse file is created (default.properties)
+        Helper.assertContains(new File("target/it/release-default/android-test/application/default.properties"), "target=android-7");
+        Helper.assertContains(new File("target/it/release-default/android-test/application-it/default.properties"), "target=android-7");
     }
 
     /**
@@ -120,6 +125,8 @@ public class ReleaseArchetypeTest {
         cli.add("-DartifactId=" + Constants.TEST_ARTIFACT_ID);
         cli.add("-DinteractiveMode=false");
         cli.add("-Dplatform=8");
+        cli.add("-DarchetypeCatalog=local");
+        cli.add("-DarchetypeRepository=local");
 
         verifier.executeGoal("org.apache.maven.plugins:maven-archetype-plugin:2.0:generate");
 
@@ -176,6 +183,8 @@ public class ReleaseArchetypeTest {
         cli.add("-DinteractiveMode=false");
         cli.add("-Dplatform=8");
         cli.add("-Dpackage=foo");
+        cli.add("-DarchetypeCatalog=local");
+        cli.add("-DarchetypeRepository=local");
 
         verifier.executeGoal("org.apache.maven.plugins:maven-archetype-plugin:2.0:generate");
 
@@ -204,6 +213,9 @@ public class ReleaseArchetypeTest {
         Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/application-it/pom.xml"), "<artifactId>maven-android-plugin</artifactId>");
         Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/application-it/AndroidManifest.xml"), "<uses-library android:name=\"android.test.runner\" />");
         Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/application-it/AndroidManifest.xml"), "<instrumentation android:targetPackage=\"foo\"");
+
+        Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/application/default.properties"), "target=android-8");
+        Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/application-it/default.properties"), "target=android-8");
     }
 
 

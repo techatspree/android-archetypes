@@ -57,6 +57,7 @@ public class QuickstartArchetypeTest {
         cli.add("-DartifactId=" + Constants.TEST_ARTIFACT_ID);
         cli.add("-DinteractiveMode=false");
         cli.add("-DarchetypeCatalog=local");
+        cli.add("-DarchetypeRepository=local");
         cli.add("-o");
 
         verifier.executeGoal("org.apache.maven.plugins:maven-archetype-plugin:2.0:generate");
@@ -104,6 +105,7 @@ public class QuickstartArchetypeTest {
         cli.add("-DgroupId=" + Constants.TEST_GROUP_ID);
         cli.add("-DartifactId=" + Constants.TEST_ARTIFACT_ID);
         cli.add("-DinteractiveMode=false");
+        cli.add("-DarchetypeRepository=local");
         cli.add("-Dplatform=8");
         cli.add("-DarchetypeCatalog=local");
 
@@ -152,6 +154,8 @@ public class QuickstartArchetypeTest {
         cli.add("-DgroupId=" + Constants.TEST_GROUP_ID);
         cli.add("-DartifactId=" + Constants.TEST_ARTIFACT_ID);
         cli.add("-DinteractiveMode=false");
+        cli.add("-DarchetypeCatalog=local");
+        cli.add("-DarchetypeRepository=local");
         cli.add("-Dplatform=8");
         cli.add("-Dpackage=foo");
 
