@@ -49,6 +49,12 @@
         <include>*.conf</include>
       </includes>
     </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>application</directory>
+      <includes>
+        <include>*.properties</include>
+      </includes>
+    </fileSet>
 
     <!-- it -->
     <fileSet filtered="true" packaged="true" encoding="UTF-8">
@@ -73,6 +79,12 @@
       <directory>application-it</directory>
       <includes>
         <include>*.xml</include>
+      </includes>
+    </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>application-it</directory>
+      <includes>
+        <include>*.properties</include>
       </includes>
     </fileSet>
   </fileSets>
