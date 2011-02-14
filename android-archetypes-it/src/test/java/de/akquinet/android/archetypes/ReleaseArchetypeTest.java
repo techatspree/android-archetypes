@@ -29,7 +29,7 @@ public class ReleaseArchetypeTest {
     @Before
     public void setUp() {
         if (System.getProperty("archetype.version") == null) {
-            System.setProperty("archetype.version", "1.0.5-SNAPSHOT");
+            System.setProperty("archetype.version", "1.0.6-SNAPSHOT");
         }
     }
 
