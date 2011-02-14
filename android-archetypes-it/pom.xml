@@ -17,11 +17,11 @@
   <parent>
     <artifactId>android-archetype-project</artifactId>
     <groupId>de.akquinet.android.archetypes</groupId>
-    <version>1.0.5</version>
+    <version>1.0.6-SNAPSHOT</version>
   </parent>
   <groupId>de.akquinet.android.archetypes</groupId>
   <artifactId>android-archetypes-it</artifactId>
-  <version>1.0.5</version>
+  <version>1.0.6-SNAPSHOT</version>
   <name>Akquinet Android Archetype - Integration Tests</name>
   <description>Android Archetypes Integration Tests</description>
 
