@@ -6,3 +6,5 @@ target
 *.iml
 *.iws
 *.ipr
+.externalToolBuilders
+maven-eclipse.xml
