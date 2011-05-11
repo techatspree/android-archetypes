@@ -18,7 +18,14 @@ way to initiate an android project:
       -DgroupId=your.company \
       -DartifactId=my-android-application
 
-You can also set the created 'package' with '-Dpackage=your.company.android'. By default it uses the given groupId.
+You can also set three optionnal properties :
+- The created 'package' with '-Dpackage=your.company.android'. By default it uses the given groupId.
+- The Android emualtor's name to use with '-Demulator=my-avd'. If none specified the property <emulator> will be ignored in the pom file.
+- The targeted Android platform with '-Dplatform=7'. The Android SDK version will be automatically fetched to fit the corresponding API level. By default, it use 7 (android 2.1)
+
+* The created 'package' with '-Dpackage=your.company.android'. By default it uses the given groupId.
+* The Android emualtor's name to use with '-Demulator=my-avd'. If none specified the property <emulator> will be ignored in the pom file.
+* The targeted Android platform with '-Dplatform=7'. The Android SDK version will be automatically fetched to fit the corresponding API level. By default, it use 7 (android 2.1).
 
 Once generated, the application is ready to be built and deployed. Start an android emulator, or plug an Android dev phone,
 and launch:
