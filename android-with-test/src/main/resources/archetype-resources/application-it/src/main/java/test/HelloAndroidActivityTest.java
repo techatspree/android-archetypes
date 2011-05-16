@@ -6,7 +6,7 @@ import ${package}.*;
 public class HelloAndroidActivityTest extends ActivityInstrumentationTestCase2<HelloAndroidActivity> {
 
     public HelloAndroidActivityTest() {
-        super(HelloAndroidActivity.class);
+        super("${package}", HelloAndroidActivity.class);
     }
 
     public void testActivity() {
