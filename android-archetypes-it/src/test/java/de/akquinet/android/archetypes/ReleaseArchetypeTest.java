@@ -95,6 +95,10 @@ public class ReleaseArchetypeTest {
         Helper.assertContains(new File("target/it/release-default/android-test/application-it/pom.xml"), "<artifactId>maven-android-plugin</artifactId>");
         Helper.assertContains(new File("target/it/release-default/android-test/application-it/AndroidManifest.xml"), "<uses-library android:name=\"android.test.runner\" />");
         Helper.assertContains(new File("target/it/release-default/android-test/application-it/AndroidManifest.xml"), "<instrumentation android:targetPackage=\"android.archetypes.test\"");
+        
+        Helper.assertContains(new File("target/it/release-default/android-test/application-it/AndroidManifest.xml"), "<instrumentation android:targetPackage=\"android.archetypes.test\"");
+
+        Helper.assertContains(new File("target/it/release-default/android-test/application-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java"), "super(\"android.archetypes.test\", HelloAndroidActivity.class);");
 
         // Check that the Eclipse file is created (default.properties)
         Helper.assertContains(new File("target/it/release-default/android-test/application/default.properties"), "target=android-7");
@@ -155,6 +159,8 @@ public class ReleaseArchetypeTest {
         Helper.assertContains(new File("target/it/release-with-platform/android-test/application-it/pom.xml"), "<artifactId>maven-android-plugin</artifactId>");
         Helper.assertContains(new File("target/it/release-with-platform/android-test/application-it/AndroidManifest.xml"), "<uses-library android:name=\"android.test.runner\" />");
         Helper.assertContains(new File("target/it/release-with-platform/android-test/application-it/AndroidManifest.xml"), "<instrumentation android:targetPackage=\"android.archetypes.test\"");
+        
+        Helper.assertContains(new File("target/it/release-with-platform/android-test/application-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java"), "super(HelloAndroidActivity.class);");
 
     }
 
@@ -216,6 +222,8 @@ public class ReleaseArchetypeTest {
 
         Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/application/default.properties"), "target=android-8");
         Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/application-it/default.properties"), "target=android-8");
+        
+        Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/application-it/src/main/java/foo/test/HelloAndroidActivityTest.java"), "super(HelloAndroidActivity.class);");
     }
 
 
