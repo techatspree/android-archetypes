@@ -6,6 +6,9 @@
     <requiredProperty key="platform" >
       <defaultValue>7</defaultValue>
     </requiredProperty>
+    <requiredProperty key="emulator">
+      <defaultValue>not-specified</defaultValue>
+    </requiredProperty>
   </requiredProperties>
 
   <fileSets>
