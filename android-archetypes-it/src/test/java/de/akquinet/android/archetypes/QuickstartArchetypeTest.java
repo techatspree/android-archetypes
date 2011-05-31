@@ -58,7 +58,6 @@ public class QuickstartArchetypeTest {
         cli.add("-DinteractiveMode=false");
         cli.add("-DarchetypeCatalog=local");
         cli.add("-DarchetypeRepository=local");
-        cli.add("-o");
 
         verifier.executeGoal("org.apache.maven.plugins:maven-archetype-plugin:2.0:generate");
 
@@ -156,7 +155,7 @@ public class QuickstartArchetypeTest {
         cli.add("-DinteractiveMode=false");
         cli.add("-DarchetypeCatalog=local");
         cli.add("-DarchetypeRepository=local");
-        cli.add("-Dplatform=8");
+        cli.add("-Dplatform=4");
         cli.add("-Dpackage=foo");
 
         verifier.executeGoal("org.apache.maven.plugins:maven-archetype-plugin:2.0:generate");
@@ -173,10 +172,64 @@ public class QuickstartArchetypeTest {
 
 
         Helper.assertContains(new File("target/it/quickstart-with-platform-and-package/android-test/pom.xml"), "<artifactId>maven-android-plugin</artifactId>");
-        Helper.assertContains(new File("target/it/quickstart-with-platform-and-package/android-test/pom.xml"), "<platform>8</platform>");
+        Helper.assertContains(new File("target/it/quickstart-with-platform-and-package/android-test/pom.xml"), "<platform>4</platform>");
+        Helper.assertContains(new File("target/it/quickstart-with-platform-and-package/android-test/pom.xml"), "1.6_r2"); // Android lib version
         Helper.assertContains(new File("target/it/quickstart-with-platform-and-package/android-test/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
         Helper.assertContains(new File("target/it/quickstart-with-platform-and-package/android-test/AndroidManifest.xml"), "package=\"foo\"");
 
+    }
+
+
+    /**
+     * Checks the quick-start archetype with the emulator parameter.
+     * @throws IOException a file cannot be read
+     * @throws VerificationException the maven launch failed
+     */
+    @Test
+    public void testQuickStartWithEmulator() throws VerificationException, IOException {
+
+        File root = Helper.prepareDirectory("quickstart-default");
+
+        Verifier verifier  = new Verifier( root.getAbsolutePath(), false );
+        verifier.setAutoclean(false);
+
+        verifier.displayStreamBuffers();
+
+        @SuppressWarnings("unchecked")
+        List<String> cli = verifier.getCliOptions();
+        cli.add("-DarchetypeArtifactId=android-quickstart");
+        cli.add("-DarchetypeGroupId=de.akquinet.android.archetypes");
+        cli.add("-DarchetypeVersion=" + System.getProperty("archetype.version"));
+        cli.add("-DgroupId=" + Constants.TEST_GROUP_ID);
+        cli.add("-DartifactId=" + Constants.TEST_ARTIFACT_ID);
+        cli.add("-DinteractiveMode=false");
+        cli.add("-DarchetypeCatalog=local");
+        cli.add("-DarchetypeRepository=local");
+        cli.add("-Demulator=test");
+
+        verifier.executeGoal("org.apache.maven.plugins:maven-archetype-plugin:2.0:generate");
+
+
+        // Check folder create.
+        verifier.assertFilePresent("android-test");
+        verifier.assertFilePresent("android-test/AndroidManifest.xml");
+        verifier.assertFilePresent("android-test/pom.xml");
+        verifier.assertFilePresent("android-test/res/values/strings.xml");
+        verifier.assertFilePresent("android-test/res/layout/main.xml");
+        verifier.assertFilePresent("android-test/assets");
+        verifier.assertFilePresent("android-test/src/main/java/android/archetypes/test/HelloAndroidActivity.java");
+
+
+        Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<artifactId>maven-android-plugin</artifactId>");
+        Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<platform>7</platform>");
+        Helper.assertContains(new File("target/it/quickstart-default/android-test/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
+        Helper.assertContains(new File("target/it/quickstart-default/android-test/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
+
+        // Check that the Eclipse file is created (default.properties)
+        Helper.assertContains(new File("target/it/quickstart-default/android-test/default.properties"), "target=android-7");
+
+        // Check the emulator part
+        Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<avd>test</avd>");
     }
 
 
