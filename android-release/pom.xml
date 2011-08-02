@@ -29,4 +29,24 @@
   <description>Creates a skeleton for an Android application,
     instrumentation tests and ready-to-publish application on releases.</description>
 
+  <profiles>
+    <profile>
+      <id>local</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-invoker-plugin</artifactId>
+            <configuration>
+              <localRepositoryPath>${settings.local.repository}</localRepositoryPath>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
 </project>
