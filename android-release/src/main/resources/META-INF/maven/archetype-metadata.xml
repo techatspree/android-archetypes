@@ -19,8 +19,10 @@
           <include>test-key.keystore</include>
       </includes>
     </fileSet>
+  </fileSets>
 
-    <!-- application -->
+  <modules>
+    <module id="${rootArtifactId}" dir="__rootArtifactId__" name="${rootArtifactId}">
     <fileSet filtered="true" packaged="true" encoding="UTF-8">
       <directory>application/src/main/java</directory>
       <includes>
@@ -58,8 +60,10 @@
         <include>*.properties</include>
       </includes>
     </fileSet>
+    </module>
 
-    <!-- it -->
+    <module id="${rootArtifactId}-it" dir="__rootArtifactId__-it" name="${rootArtifactId}-it">
+  <fileSets>
     <fileSet filtered="true" packaged="true" encoding="UTF-8">
       <directory>application-it/src/main/java</directory>
       <includes>
@@ -91,4 +95,6 @@
       </includes>
     </fileSet>
   </fileSets>
+    </module>
+</modules>
 </archetype-descriptor>
