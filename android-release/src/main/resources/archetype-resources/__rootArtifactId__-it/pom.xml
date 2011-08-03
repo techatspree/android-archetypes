@@ -10,7 +10,7 @@
   </parent>
 
   <groupId>${groupId}</groupId>
-  <artifactId>${artifactId}-it</artifactId>
+  <artifactId>${artifactId}</artifactId>
   <version>${version}</version>
   <packaging>apk</packaging>
   <name>${artifactId} - Integration tests</name>
@@ -34,14 +34,14 @@
     </dependency>
     <dependency>
       <groupId>${groupId}</groupId>
-      <artifactId>${artifactId}</artifactId>
+      <artifactId>${rootArtifactId}</artifactId>
       <type>apk</type>
       <version>${version}</version>
       <classifier>${zipaligned-classifier}</classifier> <!--  classifier set according to the ran profile -->
     </dependency>
     <dependency>
       <groupId>${groupId}</groupId>
-      <artifactId>${artifactId}</artifactId>
+      <artifactId>${rootArtifactId}</artifactId>
       <type>jar</type>
       <version>${version}</version>
     </dependency>
