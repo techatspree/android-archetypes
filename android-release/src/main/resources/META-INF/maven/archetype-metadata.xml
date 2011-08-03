@@ -23,73 +23,75 @@
 
   <modules>
     <module id="${rootArtifactId}" dir="__rootArtifactId__" name="${rootArtifactId}">
+  <fileSets>
     <fileSet filtered="true" packaged="true" encoding="UTF-8">
-      <directory>application/src/main/java</directory>
+      <directory>src/main/java</directory>
       <includes>
         <include>**/*.java</include>
       </includes>
     </fileSet>
     <fileSet filtered="true" encoding="UTF-8">
-      <directory>application/res</directory>
+      <directory>res</directory>
       <includes>
         <include>**/*.xml</include>
       </includes>
     </fileSet>
     <fileSet filtered="false" encoding="UTF-8">
-      <directory>application/res</directory>
+      <directory>res</directory>
       <includes>
         <include>**/*.png</include>
       </includes>
     </fileSet>
     <fileSet filtered="false" encoding="UTF-8">
-      <directory>application/assets</directory>
+      <directory>assets</directory>
       <includes>
         <include>**/*</include>
       </includes>
     </fileSet>
     <fileSet filtered="true" encoding="UTF-8">
-      <directory>application</directory>
+      <directory></directory>
       <includes>
         <include>*.xml</include>
         <include>*.conf</include>
       </includes>
     </fileSet>
     <fileSet filtered="true" encoding="UTF-8">
-      <directory>application</directory>
+      <directory></directory>
       <includes>
         <include>*.properties</include>
       </includes>
     </fileSet>
+  </fileSets>
     </module>
 
     <module id="${rootArtifactId}-it" dir="__rootArtifactId__-it" name="${rootArtifactId}-it">
   <fileSets>
     <fileSet filtered="true" packaged="true" encoding="UTF-8">
-      <directory>application-it/src/main/java</directory>
+      <directory>src/main/java</directory>
       <includes>
         <include>**/*.java</include>
       </includes>
     </fileSet>
     <fileSet filtered="true" encoding="UTF-8">
-      <directory>application-it/res</directory>
+      <directory>res</directory>
       <includes>
         <include>**/*.xml</include>
       </includes>
     </fileSet>
     <fileSet filtered="false" encoding="UTF-8">
-      <directory>application-it/res</directory>
+      <directory>res</directory>
       <includes>
         <include>**/*.png</include>
       </includes>
     </fileSet>
     <fileSet filtered="true" encoding="UTF-8">
-      <directory>application-it</directory>
+      <directory></directory>
       <includes>
         <include>*.xml</include>
       </includes>
     </fileSet>
     <fileSet filtered="true" encoding="UTF-8">
-      <directory>application-it</directory>
+      <directory></directory>
       <includes>
         <include>*.properties</include>
       </includes>
