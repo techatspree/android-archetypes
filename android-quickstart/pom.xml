@@ -19,6 +19,7 @@
     <groupId>de.akquinet.android.archetypes</groupId>
     <artifactId>android-archetype-project</artifactId>
     <version>1.0.6-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
   </parent>
 
   <groupId>de.akquinet.android.archetypes</groupId>
