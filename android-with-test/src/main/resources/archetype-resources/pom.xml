@@ -9,8 +9,8 @@
     <name>${artifactId} - Parent</name>
 
     <modules>
-        <module>application</module>
-        <module>application-it</module>
+        <module>${rootArtifactId}</module>
+        <module>${rootArtifactId}-it</module>
     </modules>
 
     <dependencyManagement>
