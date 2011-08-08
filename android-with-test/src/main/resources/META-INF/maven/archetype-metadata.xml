@@ -9,6 +9,9 @@
     <requiredProperty key="emulator">
       <defaultValue>not-specified</defaultValue>
     </requiredProperty>
+    <requiredProperty key="plugin-version">
+      <defaultValue>2.8.4</defaultValue>
+    </requiredProperty>
   </requiredProperties>
 
   <fileSets>
