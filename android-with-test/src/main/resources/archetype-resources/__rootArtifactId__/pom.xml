@@ -5,7 +5,7 @@
 
   <parent>
     <groupId>${groupId}</groupId>
-    <artifactId>${artifactId}-parent</artifactId>
+    <artifactId>${rootArtifactId}-parent</artifactId>
     <version>${version}</version>
   </parent>
 

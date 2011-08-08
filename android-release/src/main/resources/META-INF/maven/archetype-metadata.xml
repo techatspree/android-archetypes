@@ -19,76 +19,84 @@
           <include>test-key.keystore</include>
       </includes>
     </fileSet>
-
-    <!-- application -->
-    <fileSet filtered="true" packaged="true" encoding="UTF-8">
-      <directory>application/src/main/java</directory>
-      <includes>
-        <include>**/*.java</include>
-      </includes>
-    </fileSet>
-    <fileSet filtered="true" encoding="UTF-8">
-      <directory>application/res</directory>
-      <includes>
-        <include>**/*.xml</include>
-      </includes>
-    </fileSet>
-    <fileSet filtered="false" encoding="UTF-8">
-      <directory>application/res</directory>
-      <includes>
-        <include>**/*.png</include>
-      </includes>
-    </fileSet>
-    <fileSet filtered="false" encoding="UTF-8">
-      <directory>application/assets</directory>
-      <includes>
-        <include>**/*</include>
-      </includes>
-    </fileSet>
-    <fileSet filtered="true" encoding="UTF-8">
-      <directory>application</directory>
-      <includes>
-        <include>*.xml</include>
-        <include>*.conf</include>
-      </includes>
-    </fileSet>
-    <fileSet filtered="true" encoding="UTF-8">
-      <directory>application</directory>
-      <includes>
-        <include>*.properties</include>
-      </includes>
-    </fileSet>
-
-    <!-- it -->
-    <fileSet filtered="true" packaged="true" encoding="UTF-8">
-      <directory>application-it/src/main/java</directory>
-      <includes>
-        <include>**/*.java</include>
-      </includes>
-    </fileSet>
-    <fileSet filtered="true" encoding="UTF-8">
-      <directory>application-it/res</directory>
-      <includes>
-        <include>**/*.xml</include>
-      </includes>
-    </fileSet>
-    <fileSet filtered="false" encoding="UTF-8">
-      <directory>application-it/res</directory>
-      <includes>
-        <include>**/*.png</include>
-      </includes>
-    </fileSet>
-    <fileSet filtered="true" encoding="UTF-8">
-      <directory>application-it</directory>
-      <includes>
-        <include>*.xml</include>
-      </includes>
-    </fileSet>
-    <fileSet filtered="true" encoding="UTF-8">
-      <directory>application-it</directory>
-      <includes>
-        <include>*.properties</include>
-      </includes>
-    </fileSet>
   </fileSets>
+
+  <modules>
+    <module id="${rootArtifactId}" dir="__rootArtifactId__" name="${rootArtifactId}">
+      <fileSets>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+          <directory>src/main/java</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>res</directory>
+          <includes>
+            <include>**/*.xml</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+          <directory>res</directory>
+          <includes>
+            <include>**/*.png</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+          <directory>assets</directory>
+          <includes>
+            <include>**/*</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory></directory>
+          <includes>
+            <include>*.xml</include>
+            <include>*.conf</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory></directory>
+          <includes>
+            <include>*.properties</include>
+          </includes>
+        </fileSet>
+      </fileSets>
+    </module>
+
+    <module id="${rootArtifactId}-it" dir="__rootArtifactId__-it" name="${rootArtifactId}-it">
+      <fileSets>
+        <fileSet filtered="true" packaged="true" encoding="UTF-8">
+          <directory>src/main/java</directory>
+          <includes>
+            <include>**/*.java</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>res</directory>
+          <includes>
+            <include>**/*.xml</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="false" encoding="UTF-8">
+          <directory>res</directory>
+          <includes>
+            <include>**/*.png</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory></directory>
+          <includes>
+            <include>*.xml</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory></directory>
+          <includes>
+            <include>*.properties</include>
+          </includes>
+        </fileSet>
+      </fileSets>
+    </module>
+  </modules>
 </archetype-descriptor>
