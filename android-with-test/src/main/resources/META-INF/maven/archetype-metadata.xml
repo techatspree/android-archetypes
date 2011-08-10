@@ -52,6 +52,12 @@
         <include>*.properties</include>
       </includes>
     </fileSet>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>application/androlog</directory>
+      <includes>
+        <include>*.properties</include>
+      </includes>
+    </fileSet>
 
     <!-- it -->
     <fileSet filtered="true" packaged="true" encoding="UTF-8">
