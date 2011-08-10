@@ -20,6 +20,10 @@
       <groupId>com.google.android</groupId>
       <artifactId>android</artifactId>
     </dependency>
+    <dependency>
+      <groupId>de.akquinet.android.androlog</groupId>
+      <artifactId>androlog</artifactId>
+    </dependency>
   </dependencies>
 
   <build>
