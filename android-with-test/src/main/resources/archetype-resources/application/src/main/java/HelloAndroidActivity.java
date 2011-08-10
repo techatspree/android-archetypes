@@ -2,11 +2,9 @@ package ${package};
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
+import de.akquinet.android.androlog.Log;
 
 public class HelloAndroidActivity extends Activity {
-
-    private static String TAG = "${artifactId}";
 
     /**
      * Called when the activity is first created.
@@ -17,7 +15,13 @@ public class HelloAndroidActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(TAG, "onCreate");
+
+        // Initializes the logging
+        Log.init();
+
+        // Log a message (only on dev platform)
+        Log.i(this, "onCreate");
+
         setContentView(R.layout.main);
     }
 

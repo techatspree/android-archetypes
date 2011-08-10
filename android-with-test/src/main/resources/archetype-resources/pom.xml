@@ -39,6 +39,20 @@
                 </version>
                 <scope>provided</scope>
             </dependency>
+
+            <!-- Androlog is a logging and reporting library for Android -->
+            <dependency>
+                <groupId>de.akquinet.android.androlog</groupId>
+                <artifactId>androlog</artifactId>
+                <version>1.0.3</version>
+            </dependency>
+
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.8.1</version>
+                <scope>provided</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
