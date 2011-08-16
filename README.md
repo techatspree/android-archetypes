@@ -114,6 +114,10 @@ The archetype contains a test key store which *MUST NOT BE USED IN PRODUCTION*. 
 Be aware that Android cannot re-deploy artifacts using a different key, so be sure to undeploy all artifacts before running the
 release.
 
+Setting the maven-android-plugin version
+----------------------------------------
+You can change the default maven-android-plugin version by specifying the 'android-plugin-version' parameter.
+
 Credits
 -------
 The android-archetype-project is an open source project licensed under the Apache License 2.0.
