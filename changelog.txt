@@ -2,6 +2,8 @@ Version 1.0.6
 -------------
    * Added the android-plugin-version parameter (thanks Ricardo Gladwell)
    * Changed submodule's dir name (thanks Mykola Nikishov)
+   * Added IT tests deploying the sample application on an Android device (thanks Mykola Nikishov)
+   * Introduced androlog
 
 Version 1.0.5
 -------------
