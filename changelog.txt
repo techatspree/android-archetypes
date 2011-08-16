@@ -1,6 +1,7 @@
 Version 1.0.6
 -------------
-   * Added the android-plugin-version parameter
+   * Added the android-plugin-version parameter (thanks Ricardo Gladwell)
+   * Changed submodule's dir name (thanks Mykola Nikishov)
 
 Version 1.0.5
 -------------
