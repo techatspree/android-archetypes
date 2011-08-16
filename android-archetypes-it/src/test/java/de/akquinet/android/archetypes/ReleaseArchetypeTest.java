@@ -63,22 +63,22 @@ public class ReleaseArchetypeTest {
 
 
         // Check folder create.
-        verifier.assertFilePresent("android-test/application");
-        verifier.assertFilePresent("android-test/application-it");
-        verifier.assertFilePresent("android-test/application/AndroidManifest.xml");
-        verifier.assertFilePresent("android-test/application-it/AndroidManifest.xml");
+        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID);
+        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml");
         verifier.assertFilePresent("android-test/pom.xml");
-        verifier.assertFilePresent("android-test/application/pom.xml");
-        verifier.assertFilePresent("android-test/application-it/pom.xml");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/pom.xml");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/pom.xml");
 
-        verifier.assertFilePresent("android-test/application/proguard.conf");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/proguard.conf");
         verifier.assertFilePresent("android-test/test-key.keystore");
 
-        verifier.assertFilePresent("android-test/application/res/values/strings.xml");
-        verifier.assertFilePresent("android-test/application/res/layout/main.xml");
-        verifier.assertFilePresent("android-test/application/assets");
-        verifier.assertFilePresent("android-test/application/src/main/java/android/archetypes/test/HelloAndroidActivity.java");
-        verifier.assertFilePresent("android-test/application-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/res/values/strings.xml");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/res/layout/main.xml");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/assets");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/src/main/java/android/archetypes/test/HelloAndroidActivity.java");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java");
 
 
         Helper.assertContains(new File("target/it/release-default/android-test/pom.xml"), "<artifactId>maven-release-plugin</artifactId>");
@@ -87,22 +87,22 @@ public class ReleaseArchetypeTest {
         Helper.assertContains(new File("target/it/release-default/android-test/pom.xml"), "<id>release</id>");
         Helper.assertContains(new File("target/it/release-default/android-test/pom.xml"),"<artifactId>maven-enforcer-plugin</artifactId>");
 
-        Helper.assertContains(new File("target/it/release-default/android-test/application/pom.xml"), "<artifactId>maven-android-plugin</artifactId>");
+        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "/pom.xml"), "<artifactId>maven-android-plugin</artifactId>");
         Helper.assertContains(new File("target/it/release-default/android-test/pom.xml"), "<platform>7</platform>");
-        Helper.assertContains(new File("target/it/release-default/android-test/application/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
-        Helper.assertContains(new File("target/it/release-default/android-test/application/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
+        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
+        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
 
-        Helper.assertContains(new File("target/it/release-default/android-test/application-it/pom.xml"), "<artifactId>maven-android-plugin</artifactId>");
-        Helper.assertContains(new File("target/it/release-default/android-test/application-it/AndroidManifest.xml"), "<uses-library android:name=\"android.test.runner\" />");
-        Helper.assertContains(new File("target/it/release-default/android-test/application-it/AndroidManifest.xml"), "<instrumentation android:targetPackage=\"android.archetypes.test\"");
+        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/pom.xml"), "<artifactId>maven-android-plugin</artifactId>");
+        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml"), "<uses-library android:name=\"android.test.runner\" />");
+        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml"), "<instrumentation android:targetPackage=\"android.archetypes.test\"");
 
-        Helper.assertContains(new File("target/it/release-default/android-test/application-it/AndroidManifest.xml"), "<instrumentation android:targetPackage=\"android.archetypes.test\"");
+        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml"), "<instrumentation android:targetPackage=\"android.archetypes.test\"");
 
-        Helper.assertContains(new File("target/it/release-default/android-test/application-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java"), "super(\"android.archetypes.test\", HelloAndroidActivity.class);");
+        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java"), "super(\"android.archetypes.test\", HelloAndroidActivity.class);");
 
         // Check that the Eclipse file is created (default.properties)
-        Helper.assertContains(new File("target/it/release-default/android-test/application/default.properties"), "target=android-7");
-        Helper.assertContains(new File("target/it/release-default/android-test/application-it/default.properties"), "target=android-7");
+        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "/default.properties"), "target=android-7");
+        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/default.properties"), "target=android-7");
     }
 
     /**
@@ -136,31 +136,31 @@ public class ReleaseArchetypeTest {
 
 
         // Check folder create.
-        verifier.assertFilePresent("android-test/application");
-        verifier.assertFilePresent("android-test/application-it");
-        verifier.assertFilePresent("android-test/application/AndroidManifest.xml");
-        verifier.assertFilePresent("android-test/application-it/AndroidManifest.xml");
+        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID);
+        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml");
         verifier.assertFilePresent("android-test/pom.xml");
-        verifier.assertFilePresent("android-test/application/pom.xml");
-        verifier.assertFilePresent("android-test/application-it/pom.xml");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/pom.xml");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/pom.xml");
 
-        verifier.assertFilePresent("android-test/application/res/values/strings.xml");
-        verifier.assertFilePresent("android-test/application/res/layout/main.xml");
-        verifier.assertFilePresent("android-test/application/assets");
-        verifier.assertFilePresent("android-test/application/src/main/java/android/archetypes/test/HelloAndroidActivity.java");
-        verifier.assertFilePresent("android-test/application-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/res/values/strings.xml");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/res/layout/main.xml");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/assets");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/src/main/java/android/archetypes/test/HelloAndroidActivity.java");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java");
 
 
-        Helper.assertContains(new File("target/it/release-with-platform/android-test/application/pom.xml"), "<artifactId>maven-android-plugin</artifactId>");
+        Helper.assertContains(new File("target/it/release-with-platform/android-test/"+ Constants.TEST_ARTIFACT_ID + "/pom.xml"), "<artifactId>maven-android-plugin</artifactId>");
         Helper.assertContains(new File("target/it/release-with-platform/android-test/pom.xml"), "<platform>8</platform>");
-        Helper.assertContains(new File("target/it/release-with-platform/android-test/application/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
-        Helper.assertContains(new File("target/it/release-with-platform/android-test/application/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
+        Helper.assertContains(new File("target/it/release-with-platform/android-test/"+ Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
+        Helper.assertContains(new File("target/it/release-with-platform/android-test/"+ Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
 
-        Helper.assertContains(new File("target/it/release-with-platform/android-test/application-it/pom.xml"), "<artifactId>maven-android-plugin</artifactId>");
-        Helper.assertContains(new File("target/it/release-with-platform/android-test/application-it/AndroidManifest.xml"), "<uses-library android:name=\"android.test.runner\" />");
-        Helper.assertContains(new File("target/it/release-with-platform/android-test/application-it/AndroidManifest.xml"), "<instrumentation android:targetPackage=\"android.archetypes.test\"");
+        Helper.assertContains(new File("target/it/release-with-platform/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/pom.xml"), "<artifactId>maven-android-plugin</artifactId>");
+        Helper.assertContains(new File("target/it/release-with-platform/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml"), "<uses-library android:name=\"android.test.runner\" />");
+        Helper.assertContains(new File("target/it/release-with-platform/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml"), "<instrumentation android:targetPackage=\"android.archetypes.test\"");
 
-        Helper.assertContains(new File("target/it/release-with-platform/android-test/application-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java"), "super(HelloAndroidActivity.class);");
+        Helper.assertContains(new File("target/it/release-with-platform/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java"), "super(HelloAndroidActivity.class);");
 
     }
 
@@ -196,35 +196,35 @@ public class ReleaseArchetypeTest {
 
 
         // Check folder create.
-        verifier.assertFilePresent("android-test/application");
-        verifier.assertFilePresent("android-test/application-it");
-        verifier.assertFilePresent("android-test/application/AndroidManifest.xml");
-        verifier.assertFilePresent("android-test/application-it/AndroidManifest.xml");
+        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID);
+        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml");
         verifier.assertFilePresent("android-test/pom.xml");
-        verifier.assertFilePresent("android-test/application/pom.xml");
-        verifier.assertFilePresent("android-test/application-it/pom.xml");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/pom.xml");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/pom.xml");
 
-        verifier.assertFilePresent("android-test/application/res/values/strings.xml");
-        verifier.assertFilePresent("android-test/application/res/layout/main.xml");
-        verifier.assertFilePresent("android-test/application/assets");
-        verifier.assertFilePresent("android-test/application/src/main/java/foo/HelloAndroidActivity.java");
-        verifier.assertFilePresent("android-test/application-it/src/main/java/foo/test/HelloAndroidActivityTest.java");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/res/values/strings.xml");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/res/layout/main.xml");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/assets");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/src/main/java/foo/HelloAndroidActivity.java");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/src/main/java/foo/test/HelloAndroidActivityTest.java");
 
 
-        Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/application/pom.xml"), "<artifactId>maven-android-plugin</artifactId>");
+        Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/"+ Constants.TEST_ARTIFACT_ID + "/pom.xml"), "<artifactId>maven-android-plugin</artifactId>");
         Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/pom.xml"), "<platform>3</platform>");
         Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/pom.xml"), "1.5_r4");
-        Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/application/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
-        Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/application/AndroidManifest.xml"), "package=\"foo\"");
+        Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/"+ Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
+        Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/"+ Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "package=\"foo\"");
 
-        Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/application-it/pom.xml"), "<artifactId>maven-android-plugin</artifactId>");
-        Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/application-it/AndroidManifest.xml"), "<uses-library android:name=\"android.test.runner\" />");
-        Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/application-it/AndroidManifest.xml"), "<instrumentation android:targetPackage=\"foo\"");
+        Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/pom.xml"), "<artifactId>maven-android-plugin</artifactId>");
+        Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml"), "<uses-library android:name=\"android.test.runner\" />");
+        Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml"), "<instrumentation android:targetPackage=\"foo\"");
 
-        Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/application/default.properties"), "target=android-3");
-        Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/application-it/default.properties"), "target=android-3");
+        Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/"+ Constants.TEST_ARTIFACT_ID + "/default.properties"), "target=android-3");
+        Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/default.properties"), "target=android-3");
 
-        Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/application-it/src/main/java/foo/test/HelloAndroidActivityTest.java"), "super(\"foo\", HelloAndroidActivity.class);");
+        Helper.assertContains(new File("target/it/release-with-platform-and-package/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/src/main/java/foo/test/HelloAndroidActivityTest.java"), "super(\"foo\", HelloAndroidActivity.class);");
     }
 
     /**
@@ -258,22 +258,22 @@ public class ReleaseArchetypeTest {
 
 
         // Check folder create.
-        verifier.assertFilePresent("android-test/application");
-        verifier.assertFilePresent("android-test/application-it");
-        verifier.assertFilePresent("android-test/application/AndroidManifest.xml");
-        verifier.assertFilePresent("android-test/application-it/AndroidManifest.xml");
+        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID);
+        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml");
         verifier.assertFilePresent("android-test/pom.xml");
-        verifier.assertFilePresent("android-test/application/pom.xml");
-        verifier.assertFilePresent("android-test/application-it/pom.xml");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/pom.xml");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/pom.xml");
 
-        verifier.assertFilePresent("android-test/application/proguard.conf");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/proguard.conf");
         verifier.assertFilePresent("android-test/test-key.keystore");
 
-        verifier.assertFilePresent("android-test/application/res/values/strings.xml");
-        verifier.assertFilePresent("android-test/application/res/layout/main.xml");
-        verifier.assertFilePresent("android-test/application/assets");
-        verifier.assertFilePresent("android-test/application/src/main/java/android/archetypes/test/HelloAndroidActivity.java");
-        verifier.assertFilePresent("android-test/application-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/res/values/strings.xml");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/res/layout/main.xml");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/assets");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "/src/main/java/android/archetypes/test/HelloAndroidActivity.java");
+        verifier.assertFilePresent("android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java");
 
 
         Helper.assertContains(new File("target/it/release-default/android-test/pom.xml"), "<avd>test</avd>");
@@ -283,22 +283,22 @@ public class ReleaseArchetypeTest {
         Helper.assertContains(new File("target/it/release-default/android-test/pom.xml"), "<id>release</id>");
         Helper.assertContains(new File("target/it/release-default/android-test/pom.xml"),"<artifactId>maven-enforcer-plugin</artifactId>");
 
-        Helper.assertContains(new File("target/it/release-default/android-test/application/pom.xml"), "<artifactId>maven-android-plugin</artifactId>");
+        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "/pom.xml"), "<artifactId>maven-android-plugin</artifactId>");
         Helper.assertContains(new File("target/it/release-default/android-test/pom.xml"), "<platform>7</platform>");
-        Helper.assertContains(new File("target/it/release-default/android-test/application/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
-        Helper.assertContains(new File("target/it/release-default/android-test/application/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
+        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
+        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
 
-        Helper.assertContains(new File("target/it/release-default/android-test/application-it/pom.xml"), "<artifactId>maven-android-plugin</artifactId>");
-        Helper.assertContains(new File("target/it/release-default/android-test/application-it/AndroidManifest.xml"), "<uses-library android:name=\"android.test.runner\" />");
-        Helper.assertContains(new File("target/it/release-default/android-test/application-it/AndroidManifest.xml"), "<instrumentation android:targetPackage=\"android.archetypes.test\"");
+        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/pom.xml"), "<artifactId>maven-android-plugin</artifactId>");
+        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml"), "<uses-library android:name=\"android.test.runner\" />");
+        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml"), "<instrumentation android:targetPackage=\"android.archetypes.test\"");
 
-        Helper.assertContains(new File("target/it/release-default/android-test/application-it/AndroidManifest.xml"), "<instrumentation android:targetPackage=\"android.archetypes.test\"");
+        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml"), "<instrumentation android:targetPackage=\"android.archetypes.test\"");
 
-        Helper.assertContains(new File("target/it/release-default/android-test/application-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java"), "super(\"android.archetypes.test\", HelloAndroidActivity.class);");
+        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java"), "super(\"android.archetypes.test\", HelloAndroidActivity.class);");
 
         // Check that the Eclipse file is created (default.properties)
-        Helper.assertContains(new File("target/it/release-default/android-test/application/default.properties"), "target=android-7");
-        Helper.assertContains(new File("target/it/release-default/android-test/application-it/default.properties"), "target=android-7");
+        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "/default.properties"), "target=android-7");
+        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/default.properties"), "target=android-7");
     }
 
 
