@@ -1,3 +1,7 @@
+Version 1.0.6
+-------------
+   * Added the android-plugin-version parameter
+
 Version 1.0.5
 -------------
    * Fix archetype descriptors to be usable from m2eclipse
