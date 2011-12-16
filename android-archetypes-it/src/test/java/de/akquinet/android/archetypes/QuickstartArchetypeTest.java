@@ -72,7 +72,7 @@ public class QuickstartArchetypeTest {
         verifier.assertFilePresent("android-test/src/main/java/android/archetypes/test/HelloAndroidActivity.java");
 
 
-        Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<artifactId>maven-android-plugin</artifactId>");
+        Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
         Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<platform>7</platform>");
         Helper.assertContains(new File("target/it/quickstart-default/android-test/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
         Helper.assertContains(new File("target/it/quickstart-default/android-test/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
@@ -121,7 +121,7 @@ public class QuickstartArchetypeTest {
         verifier.assertFilePresent("android-test/src/main/java/android/archetypes/test/HelloAndroidActivity.java");
 
 
-        Helper.assertContains(new File("target/it/quickstart-with-platform/android-test/pom.xml"), "<artifactId>maven-android-plugin</artifactId>");
+        Helper.assertContains(new File("target/it/quickstart-with-platform/android-test/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
         Helper.assertContains(new File("target/it/quickstart-with-platform/android-test/pom.xml"), "<platform>8</platform>");
         Helper.assertContains(new File("target/it/quickstart-with-platform/android-test/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
         Helper.assertContains(new File("target/it/quickstart-with-platform/android-test/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
@@ -171,7 +171,7 @@ public class QuickstartArchetypeTest {
         verifier.assertFilePresent("android-test/src/main/java/foo/HelloAndroidActivity.java");
 
 
-        Helper.assertContains(new File("target/it/quickstart-with-platform-and-package/android-test/pom.xml"), "<artifactId>maven-android-plugin</artifactId>");
+        Helper.assertContains(new File("target/it/quickstart-with-platform-and-package/android-test/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
         Helper.assertContains(new File("target/it/quickstart-with-platform-and-package/android-test/pom.xml"), "<platform>4</platform>");
         Helper.assertContains(new File("target/it/quickstart-with-platform-and-package/android-test/pom.xml"), "1.6_r2"); // Android lib version
         Helper.assertContains(new File("target/it/quickstart-with-platform-and-package/android-test/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
@@ -220,7 +220,7 @@ public class QuickstartArchetypeTest {
         verifier.assertFilePresent("android-test/src/main/java/android/archetypes/test/HelloAndroidActivity.java");
 
 
-        Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<artifactId>maven-android-plugin</artifactId>");
+        Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
         Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<platform>7</platform>");
         Helper.assertContains(new File("target/it/quickstart-default/android-test/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
         Helper.assertContains(new File("target/it/quickstart-default/android-test/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
