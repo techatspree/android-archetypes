@@ -30,7 +30,7 @@
     <plugins>
       <plugin>
         <groupId>com.jayway.maven.plugins.android.generation2</groupId>
-        <artifactId>maven-android-plugin</artifactId>
+        <artifactId>android-maven-plugin</artifactId>
         <extensions>true</extensions>
       </plugin>
     </plugins>
@@ -89,7 +89,7 @@
           </plugin>
           <plugin>
             <groupId>com.jayway.maven.plugins.android.generation2</groupId>
-            <artifactId>maven-android-plugin</artifactId>
+            <artifactId>android-maven-plugin</artifactId>
             <executions>
               <execution>
                 <id>zipalign-application-apk</id>

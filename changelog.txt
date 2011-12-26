@@ -1,3 +1,7 @@
+Version 1.0.7
+-------------
+   * Changed plugin name to android-maven-plugin (dtmilano)
+
 Version 1.0.6
 -------------
    * Added the android-plugin-version parameter (thanks Ricardo Gladwell)
