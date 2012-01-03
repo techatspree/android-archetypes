@@ -49,9 +49,9 @@
         <version>2.7.2</version>
         <configuration>
           <parallel>true</parallel>
-          <environmentVariables>
+          <systemPropertyVariables>
             <archetype.version>${project.version}</archetype.version>
-          </environmentVariables>
+          </systemPropertyVariables>
         </configuration>
       </plugin>
     </plugins>

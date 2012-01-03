@@ -22,6 +22,13 @@ import java.io.InputStream;
 import org.junit.Assert;
 
 public class Helper {
+    
+    public static void defineArchetypeVersion() {
+        if (System.getProperty("archetype.version") == null) {
+            System.setProperty("archetype.version", "1.0.7-SNAPSHOT");
+        }
+        System.out.println("archetype.version=" + System.getProperty("archetype.version"));
+    }
 
     public static File prepareDirectory(String dir) {
         File file = new File("target/it/" + dir);
