@@ -13,249 +13,252 @@
  See the License for the specific language governing permissions and
  limitations under the License.
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
 
-  <groupId>de.akquinet.android.archetypes</groupId>
-  <artifactId>android-archetype-project</artifactId>
-  <version>1.0.7-SNAPSHOT</version>
-  <packaging>pom</packaging>
+    <groupId>de.akquinet.android.archetypes</groupId>
+    <artifactId>android-archetype-project</artifactId>
+    <version>1.0.7-SNAPSHOT</version>
+    <packaging>pom</packaging>
 
-  <parent>
-    <groupId>org.sonatype.oss</groupId>
-    <artifactId>oss-parent</artifactId>
-    <version>5</version>
-  </parent>
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>5</version>
+    </parent>
 
-  <name>Akquinet Android Archetypes</name>
-  <description>This project provides several Maven archetypes for Android</description>
-  <url>http://akquinet.github.com/android-archetypes</url>
-  <inceptionYear>2010</inceptionYear>
+    <name>Akquinet Android Archetypes</name>
+    <description>This project provides several Maven archetypes for Android</description>
+    <url>http://akquinet.github.com/android-archetypes</url>
+    <inceptionYear>2010</inceptionYear>
 
-  <modules>
-    <module>android-quickstart</module>
-    <module>android-with-test</module>
-    <module>android-release</module>
-    <module>android-archetypes-it</module>
-  </modules>
+    <modules>
+        <module>android-quickstart</module>
+        <module>android-with-test</module>
+        <module>android-release</module>
+        <module>android-archetypes-it</module>
+    </modules>
 
-  <organization>
-    <name>akquinet A.G.</name>
-    <url>http://www.akquinet.de/en</url>
-  </organization>
+    <organization>
+        <name>akquinet A.G.</name>
+        <url>http://www.akquinet.de/en</url>
+    </organization>
 
-  <licenses>
-    <license>
-      <name>The Apache Software License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
-  <build>
-    <extensions>
-        <extension>
-            <groupId>org.apache.maven.archetype</groupId>
-            <artifactId>archetype-packaging</artifactId>
-            <version>2.0</version>
-        </extension>
-    </extensions>
+    <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.archetype</groupId>
+                <artifactId>archetype-packaging</artifactId>
+                <version>2.0</version>
+            </extension>
+        </extensions>
 
-    <resources>
-      <resource>
-        <directory>src/main/resources</directory>
-      </resource>
-      <resource>
-        <directory>.</directory>
-        <targetPath>META-INF</targetPath>
-        <includes>
-          <include>LICENSE*</include>
-          <include>NOTICE*</include>
-        </includes>
-      </resource>
-    </resources>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>.</directory>
+                <targetPath>META-INF</targetPath>
+                <includes>
+                    <include>LICENSE*</include>
+                    <include>NOTICE*</include>
+                </includes>
+            </resource>
+        </resources>
 
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>attach-javadocs</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <artifactId>maven-release-plugin</artifactId>
-        <version>2.0-beta-9</version>
-        <configuration>
-          <useReleaseProfile>true</useReleaseProfile>
-          <goals>deploy</goals>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-invoker-plugin</artifactId>
-        <inherited>true</inherited>
-        <executions>
-          <execution>
-            <id>generate-projects</id>
-            <goals>
-              <goal>install</goal>
-              <goal>run</goal>
-            </goals>
-            <configuration>
-              <cloneProjectsTo>${project.build.directory}/it/projects</cloneProjectsTo>
-              <goals>
-                <goal>org.apache.maven.plugins:maven-archetype-plugin:generate</goal>
-              </goals>
-              <pomIncludes>
-                <pomInclude>*</pomInclude>
-              </pomIncludes>
-              <projectsDirectory>${basedir}/src/it/projects</projectsDirectory>
-              <properties>
-                <archetypeArtifactId>${project.artifactId}</archetypeArtifactId>
-                <archetypeGroupId>${project.groupId}</archetypeGroupId>
-                <archetypeRepository>local</archetypeRepository>
-                <archetypeVersion>${project.version}</archetypeVersion>
-                <interactiveMode>false</interactiveMode>
-              </properties>
-            </configuration>
-          </execution>
-          <execution>
-            <id>verify-projects</id>
-            <goals>
-              <goal>run</goal>
-            </goals>
-            <configuration>
-              <goals>
-                <goal>verify</goal>
-              </goals>
-              <pomIncludes>
-                <pomInclude>*/*/pom.xml</pomInclude>
-              </pomIncludes>
-              <projectsDirectory>${project.build.directory}/it/projects</projectsDirectory>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-
-    <pluginManagement>
         <plugins>
             <plugin>
-                <artifactId>maven-archetype-plugin</artifactId>
-                <version>2.0</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
             </plugin>
+
             <plugin>
-                <artifactId>maven-archetype-plugin</artifactId>
-                <version>2.0</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.0-beta-9</version>
+                <configuration>
+                    <useReleaseProfile>true</useReleaseProfile>
+                    <goals>deploy</goals>
+                    <arguments>-DskipTests -Dinvoker.skip=true</arguments>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-invoker-plugin</artifactId>
-                <configuration>
-                    <localRepositoryPath>${project.build.directory}/it/repo</localRepositoryPath>
-                    <debug>true</debug>
-                    <showErrors>true</showErrors>
-                </configuration>
+                <inherited>true</inherited>
+                <executions>
+                    <execution>
+                        <id>generate-projects</id>
+                        <goals>
+                            <goal>install</goal>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <cloneProjectsTo>${project.build.directory}/it/projects</cloneProjectsTo>
+                            <goals>
+                                <goal>org.apache.maven.plugins:maven-archetype-plugin:generate</goal>
+                            </goals>
+                            <pomIncludes>
+                                <pomInclude>*</pomInclude>
+                            </pomIncludes>
+                            <projectsDirectory>${basedir}/src/it/projects</projectsDirectory>
+                            <properties>
+                                <archetypeArtifactId>${project.artifactId}</archetypeArtifactId>
+                                <archetypeGroupId>${project.groupId}</archetypeGroupId>
+                                <archetypeRepository>local</archetypeRepository>
+                                <archetypeVersion>${project.version}</archetypeVersion>
+                                <interactiveMode>false</interactiveMode>
+                            </properties>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>verify-projects</id>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <goals>
+                                <goal>verify</goal>
+                            </goals>
+                            <pomIncludes>
+                                <pomInclude>*/*/pom.xml</pomInclude>
+                            </pomIncludes>
+                            <projectsDirectory>${project.build.directory}/it/projects</projectsDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
-    </pluginManagement>
-  </build>
 
-  <scm>
-    <connection>scm:git:git@github.com:akquinet/android-archetypes.git</connection>
-    <url>git@github.com:akquinet/android-archetypes.git</url>
-    <developerConnection>scm:git:git@github.com:akquinet/android-archetypes.git</developerConnection>
-  </scm>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-archetype-plugin</artifactId>
+                    <version>2.0</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-archetype-plugin</artifactId>
+                    <version>2.0</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-invoker-plugin</artifactId>
+                    <configuration>
+                        <localRepositoryPath>${project.build.directory}/it/repo</localRepositoryPath>
+                        <debug>true</debug>
+                        <showErrors>true</showErrors>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <scm>
+        <connection>scm:git:git@github.com:akquinet/android-archetypes.git</connection>
+        <url>git@github.com:akquinet/android-archetypes.git</url>
+        <developerConnection>scm:git:git@github.com:akquinet/android-archetypes.git</developerConnection>
+    </scm>
 
 
-  <profiles>
-    <profile>
-      <!-- When enabled, this profile override the Sonatype distribution management -->
-      <id>ats.nexus</id>
-      <distributionManagement>
-        <repository>
-          <id>${repo.releases.id}</id>
-          <name>${repo.releases.name}</name>
-          <url>${repo.releases.url}</url>
-          <uniqueVersion>false</uniqueVersion>
-        </repository>
+    <profiles>
+        <profile>
+            <!-- When enabled, this profile override the Sonatype distribution management -->
+            <id>ats.nexus</id>
+            <distributionManagement>
+                <repository>
+                    <id>${repo.releases.id}</id>
+                    <name>${repo.releases.name}</name>
+                    <url>${repo.releases.url}</url>
+                    <uniqueVersion>false</uniqueVersion>
+                </repository>
 
-        <snapshotRepository>
-          <id>${repo.snapshots.id}</id>
-          <name>${repo.snapshots.name}</name>
-          <url>${repo.snapshots.url}</url>
-          <uniqueVersion>false</uniqueVersion>
-        </snapshotRepository>
-      </distributionManagement>
-    </profile>
+                <snapshotRepository>
+                    <id>${repo.snapshots.id}</id>
+                    <name>${repo.snapshots.name}</name>
+                    <url>${repo.snapshots.url}</url>
+                    <uniqueVersion>false</uniqueVersion>
+                </snapshotRepository>
+            </distributionManagement>
+        </profile>
 
-    <profile>
-      <id>release</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
 
-    <profile>
-      <id>local</id>
-      <activation>
-        <activeByDefault>false</activeByDefault>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-invoker-plugin</artifactId>
-            <configuration>
-              <localRepositoryPath>${settings.local.repository}</localRepositoryPath>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
+        <profile>
+            <id>local</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-invoker-plugin</artifactId>
+                        <configuration>
+                            <localRepositoryPath>${settings.local.repository}</localRepositoryPath>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
 
-  </profiles>
+    </profiles>
 </project>
