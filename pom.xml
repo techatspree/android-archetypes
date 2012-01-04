@@ -118,7 +118,7 @@
                 <configuration>
                     <useReleaseProfile>true</useReleaseProfile>
                     <goals>deploy</goals>
-                    <arguments>-DskipTests -Dinvoker.skip=true</arguments>
+                    <arguments>-DskipTests -Dinvoker.skip=true -Psonatype-oss-release</arguments>
                 </configuration>
             </plugin>
 
