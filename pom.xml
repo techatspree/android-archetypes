@@ -117,10 +117,8 @@
         <configuration>
           <useReleaseProfile>true</useReleaseProfile>
           <goals>deploy</goals>
-          <arguments>-DskipTests</arguments>
         </configuration>
       </plugin>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-invoker-plugin</artifactId>
