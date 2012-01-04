@@ -17,12 +17,12 @@
   <parent>
     <artifactId>android-archetype-project</artifactId>
     <groupId>de.akquinet.android.archetypes</groupId>
-    <version>1.0.7</version>
+    <version>1.0.7-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
   <groupId>de.akquinet.android.archetypes</groupId>
   <artifactId>android-archetypes-it</artifactId>
-  <version>1.0.7</version>
+  <version>1.0.7-SNAPSHOT</version>
   <name>Akquinet Android Archetype - Integration Tests</name>
   <description>Android Archetypes Integration Tests</description>
 

@@ -18,13 +18,13 @@
   <parent>
     <groupId>de.akquinet.android.archetypes</groupId>
     <artifactId>android-archetype-project</artifactId>
-    <version>1.0.7</version>
+    <version>1.0.7-SNAPSHOT</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
   <groupId>de.akquinet.android.archetypes</groupId>
   <artifactId>android-quickstart</artifactId>
-  <version>1.0.7</version>
+  <version>1.0.7-SNAPSHOT</version>
   <name>Akquinet Android Archetype - android-quickstart</name>
   <description>Creates a skeleton for an Android application</description>
 </project>
