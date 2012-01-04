@@ -25,7 +25,7 @@ public class Helper {
     
     public static void defineArchetypeVersion() {
         if (System.getProperty("archetype.version") == null) {
-            System.setProperty("archetype.version", "1.0.7-SNAPSHOT");
+            System.setProperty("archetype.version", "1.0.8-SNAPSHOT");
         }
         System.out.println("archetype.version=" + System.getProperty("archetype.version"));
     }
