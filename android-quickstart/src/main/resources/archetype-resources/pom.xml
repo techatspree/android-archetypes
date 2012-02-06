@@ -42,7 +42,6 @@
                         <avd>${emulator}</avd>
                     </emulator>
                     #end
-                    <deleteConflictingFiles>true</deleteConflictingFiles>
                     <undeployBeforeDeploy>true</undeployBeforeDeploy>
                 </configuration>
                 <extensions>true</extensions>
