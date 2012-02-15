@@ -22,7 +22,7 @@ You can also set three optional properties :
 
 * The created 'package' with '-Dpackage=your.company.android'. By default it uses the given groupId.
 * The Android emulator's name to use with '-Demulator=my-avd'. If none specified the property <emulator> will be ignored in the pom file.
-* The targeted Android platform with '-Dplatform=7'. The Android SDK version will be automatically fetched to fit the corresponding API level. By default, it uses 7 (android 2.1).
+* The targeted Android platform with '-Dplatform=7'. The Android SDK version will be automatically fetched to fit the corresponding API level. Available API Level are 3, 4, 7, 8, 9, 10 and 14. By default, it uses 10 (android 2.3.3).
 
 Once generated, the application is ready to be built and deployed. Start an android emulator, or plug an Android dev phone,
 and launch:
@@ -47,7 +47,7 @@ This archetype creates a multi-module project containing an android application 
       -Dpackage=com.foo.bar.android
 
 The 'package' value is optional (by default use the groupId). You can also set the targeted Android platform with
-'-Dplatform=x'. By default, it use 7 (android 2.1)
+'-Dplatform=x'. By default, it uses 10 (android 2.3.3).
 
 Once generated, the application is ready to be built and tested. Start an android emulator, or plug an Android dev phone,
 and launch:
@@ -71,7 +71,7 @@ This archetype extends `android-with-test` with release management.
       -Dpackage=com.foo.bar.android
 
 The 'package' value is optional (by default use the groupId). You can also set the targeted Android platform with
-'-Dplatform=x'. By default, it use 7 (android 2.1)
+'-Dplatform=x'. By default, it uses 10 (android 2.3.3).
 
 Once generated, the application is ready to be built and tested. Start an android emulator, or plug an Android dev phone,
 and launch:

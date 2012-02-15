@@ -71,12 +71,12 @@ public class QuickstartArchetypeTest {
 
 
         Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
-        Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<platform>7</platform>");
+        Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<platform>10</platform>");
         Helper.assertContains(new File("target/it/quickstart-default/android-test/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
         Helper.assertContains(new File("target/it/quickstart-default/android-test/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
 
         // Check that the Eclipse file is created (default.properties)
-        Helper.assertContains(new File("target/it/quickstart-default/android-test/default.properties"), "target=android-7");
+        Helper.assertContains(new File("target/it/quickstart-default/android-test/default.properties"), "target=android-10");
     }
 
     /**
@@ -204,7 +204,7 @@ public class QuickstartArchetypeTest {
         cli.add("-DarchetypeCatalog=local");
         cli.add("-DarchetypeRepository=local");
         cli.add("-Demulator=test");
-        cli.add("-Dandroid-plugin-version=3.0.0-alpha-2");
+        cli.add("-Dandroid-plugin-version=3.1.1");
         verifier.executeGoal("org.apache.maven.plugins:maven-archetype-plugin:2.0:generate");
 
 
@@ -219,12 +219,12 @@ public class QuickstartArchetypeTest {
 
 
         Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
-        Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<platform>7</platform>");
+        Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<platform>10</platform>");
         Helper.assertContains(new File("target/it/quickstart-default/android-test/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
         Helper.assertContains(new File("target/it/quickstart-default/android-test/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
 
         // Check that the Eclipse file is created (default.properties)
-        Helper.assertContains(new File("target/it/quickstart-default/android-test/default.properties"), "target=android-7");
+        Helper.assertContains(new File("target/it/quickstart-default/android-test/default.properties"), "target=android-10");
 
         // Check the emulator part
         Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<avd>test</avd>");
