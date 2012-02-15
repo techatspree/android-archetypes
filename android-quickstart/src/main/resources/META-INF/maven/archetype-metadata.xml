@@ -6,7 +6,7 @@
 
   <requiredProperties>
     <requiredProperty key="platform">
-      <defaultValue>7</defaultValue>
+      <defaultValue>10</defaultValue>
     </requiredProperty>
     <requiredProperty key="emulator">
       <defaultValue>not-specified</defaultValue>
