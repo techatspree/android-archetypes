@@ -1,3 +1,10 @@
+Version 1.0.8
+-------------
+   * Removed delete conflicting files (Peter Budo)
+   * Updates dependencies : android-maven-plugin from 3.0.0 to 3.1.1, androlog from 1.0.4 to 1.0.5, junit from 4.8.1
+   to 4.10 (Peter Budo)
+   * Supported platform update (Peter Budo) (see https://github.com/akquinet/android-archetypes/pull/28)
+
 Version 1.0.7
 -------------
    * Changed plugin name to android-maven-plugin (dtmilano)
