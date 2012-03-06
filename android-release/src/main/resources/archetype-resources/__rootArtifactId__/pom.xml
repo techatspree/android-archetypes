@@ -54,7 +54,7 @@
                 <configuration>
                   <proguardVersion>4.4</proguardVersion>
                   <maxMemory>256m</maxMemory>
-                  <injar>android-classes</injar>
+                  <injar>classes</injar>
                   <libs>
                     <lib>${rt.jar.path}</lib>
                     <lib>${jsse.jar.path}</lib>
