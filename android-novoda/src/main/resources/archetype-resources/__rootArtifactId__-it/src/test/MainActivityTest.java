@@ -3,9 +3,9 @@ package ${package}.test;
 import android.test.ActivityInstrumentationTestCase2;
 import ${package}.*;
 
-public class HelloAndroidActivityTest extends ActivityInstrumentationTestCase2<HelloAndroidActivity> {
+public class MainActivityTest extends ActivityInstrumentationTestCase2<HelloAndroidActivity> {
 
-    public HelloAndroidActivityTest() {
+    public MainActivityTest() {
 #set( $Integer = 0 )
 #set( $platformNumber = $Integer.parseInt($platform) )
 #if($platformNumber > 7) 

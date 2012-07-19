@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import de.akquinet.android.androlog.Log;
 
-public class HelloAndroidActivity extends Activity {
+public class MainActivity extends Activity {
 
     /**
      * Called when the activity is first created.
