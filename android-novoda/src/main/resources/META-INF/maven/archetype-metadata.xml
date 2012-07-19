@@ -5,21 +5,21 @@
 
     <requiredProperties>
         <requiredProperty key="platform">
-            <defaultValue>10</defaultValue>
+            <defaultValue>14</defaultValue>
         </requiredProperty>
         <requiredProperty key="emulator">
             <defaultValue>not-specified</defaultValue>
         </requiredProperty>
         <requiredProperty key="android-plugin-version">
-            <defaultValue>3.1.1</defaultValue>
+            <defaultValue>3.3.0</defaultValue>
         </requiredProperty>
     </requiredProperties>
 
     <modules>
-        <module id="${rootArtifactId}" dir="__rootArtifactId__" name="app">
+        <module id="${rootArtifactId}" dir="app" name="app">
             <fileSets>
                 <fileSet filtered="true" packaged="true" encoding="UTF-8">
-                    <directory>src/main/java</directory>
+                    <directory>src</directory>
                     <includes>
                         <include>**/*.java</include>
                     </includes>
@@ -63,7 +63,7 @@
             </fileSets>
         </module>
 
-        <module id="${rootArtifactId}-it" dir="__rootArtifactId__-it" name="instrumentation">
+        <module id="${rootArtifactId}-it" dir="instrumentation" name="instrumentation">
             <fileSets>
                 <fileSet filtered="true" packaged="true" encoding="UTF-8">
                     <directory>src</directory>

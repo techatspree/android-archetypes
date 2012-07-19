@@ -1,73 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>${groupId}</groupId>
-    <artifactId>${artifactId}-parent</artifactId>
-    <version>${version}</version>
-    <packaging>pom</packaging>
-    <name>${artifactId} - Parent</name>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-    <modules>
-        <module>${rootArtifactId}</module>
-        <module>${rootArtifactId}-it</module>
-    </modules>
+  <parent>
+    <groupId>com.novoda</groupId>
+    <artifactId>android</artifactId>
+    <version>2.0.2</version>
+  </parent>
 
-    <properties>
-        <platform.version>#if(${platform} == 3) 1.5_r4
-            #elseif(${platform} == 4) 1.6_r2
-            #elseif(${platform} == 7) 2.1.2
-            #elseif(${platform} == 8) 2.2.1
-            #elseif(${platform} == 9) 2.3.1
-            #elseif(${platform} == 10) 2.3.3
-            #{else} 4.0.1.2
-            #end</platform.version>
-    </properties>
+  <groupId>${groupId}</groupId>
+  <artifactId>${artifactId}-parent</artifactId>
+  <version>${version}</version>
+  <packaging>pom</packaging>
+  <name>${artifactId} - Parent</name>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.google.android</groupId>
-                <artifactId>android</artifactId>
-                <version>${platform.version}</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>com.google.android</groupId>
-                <artifactId>android-test</artifactId>
-                <version>${platform.version}</version>
-                <scope>provided</scope>
-            </dependency>
+  <modules>
+    <module>app</module>
+    <module>core</module>
+    <module>instrumentation</module>
+  </modules>
 
-            <!-- Androlog is a logging and reporting library for Android -->
-            <dependency>
-                <groupId>de.akquinet.android.androlog</groupId>
-                <artifactId>androlog</artifactId>
-                <version>1.0.5</version>
-            </dependency>
+  <properties>
+    <android.version>#if(${platform} == 3) 1.5_r4
+      #elseif(${platform} == 4) 1.6_r2
+      #elseif(${platform} == 7) 2.1.2
+      #elseif(${platform} == 8) 2.2.1
+      #elseif(${platform} == 9) 2.3.1
+      #elseif(${platform} == 10) 2.3.3
+      #elseif(${platform} == 14) 4.0.1.2
+      #end
+    </android.version>
+    <android-test.version>2.3.3</android-test.version>
+    <android.sdk.platform>${platform}</android.sdk.platform>
+    <android.maven.plugin.version>3.3.0</android.maven.plugin.version>
+  </properties>
 
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.10</version>
-                <scope>provided</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+  <repositories>
+    <repository>
+      <id>public-mvn-repo-releases</id>
+      <url>
+        https://github.com/novoda/public-mvn-repo/raw/master/releases
+      </url>
+    </repository>
+    <repository>
+      <id>jakewharton</id>
+      <url>http://r.jakewharton.com/maven/release/</url>
+    </repository>
+  </repositories>
 
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>com.jayway.maven.plugins.android.generation2</groupId>
-                    <artifactId>android-maven-plugin</artifactId>
-                    <version>${android-plugin-version}</version>
-                </plugin>
-                <plugin>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>2.3.2</version>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
+  <pluginRepositories>
+    <pluginRepository>
+      <id>public-mvn-repo.plugin-releases</id>
+      <url>https://github.com/novoda/public-mvn-repo/raw/master/releases</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <scm>
+    <url><!--EXAMPLE https://github.com/novoda/P2D2/tree/${scm.branch}--></url>
+    <connection><!--EXAMPLE scm:git:git://https://github.com/novoda/P2D2.git--></connection>
+    <developerConnection><!--EXAMPLE scm:git:ssh://https://github.com/novoda/P2D2.git--></developerConnection>
+  </scm>
+
+  <licenses>
+    <license>
+      <name>Apache 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
 </project>
+
+  <!--<dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.google.android</groupId>
+        <artifactId>android</artifactId>
+        <version>${platform.version}</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.google.android</groupId>
+        <artifactId>android-test</artifactId>
+        <version>${platform.version}</version>
+        <scope>provided</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+          <artifactId>android-maven-plugin</artifactId>
+          <version>${android-plugin-version}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>2.3.2</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>-->
