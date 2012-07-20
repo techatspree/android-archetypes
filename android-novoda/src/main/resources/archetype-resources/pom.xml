@@ -34,6 +34,7 @@
     <android-test.version>2.3.3</android-test.version>
     <android.sdk.platform>${platform}</android.sdk.platform>
     <android.maven.plugin.version>3.3.0</android.maven.plugin.version>
+    <junit.version>4.10</junit.version>
   </properties>
 
   <repositories>
