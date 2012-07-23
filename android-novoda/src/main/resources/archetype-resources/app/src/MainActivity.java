@@ -2,7 +2,6 @@ package ${package};
 
 import android.app.Activity;
 import android.os.Bundle;
-import de.akquinet.android.androlog.Log;
 
 public class MainActivity extends Activity {
 
@@ -15,13 +14,6 @@ public class MainActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Initializes the logging
-        Log.init();
-
-        // Log a message (only on dev platform)
-        Log.i(this, "onCreate");
-
         setContentView(R.layout.main);
     }
 

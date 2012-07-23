@@ -8,7 +8,7 @@
   </parent>
 
   <groupId>${groupId}</groupId>
-  <artifactId>-core</artifactId>
+  <artifactId>core</artifactId>
   <name>${artifactId} - core</name>
   <packaging>jar</packaging>
 

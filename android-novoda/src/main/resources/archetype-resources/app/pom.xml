@@ -15,6 +15,31 @@
   <packaging>apk</packaging>
   <name>${artifactId} - Application</name>
 
+  <profiles>
+    <profile>
+      <id>emma</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+            <artifactId>android-maven-plugin</artifactId>
+            <configuration>
+              <emma>
+                <enable>true</enable>
+                <classFolders>${project.basedir}/target/classes/</classFolders>
+                <outputMetaFile>${project.basedir}/target/emma/coverage.em</outputMetaFile>
+              </emma>
+              <dex>
+                <noLocals>true</noLocals>
+              </dex>
+            </configuration>
+            <extensions>true</extensions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
   <dependencies>
     <dependency>
       <groupId>com.google.android</groupId>
@@ -26,7 +51,7 @@
     <dependency>
       <groupId>com.google.android</groupId>
       <artifactId>support-v4</artifactId>
-      <version>r7</version>
+      <version>${support-library.version}</version>
     </dependency>
 
     <dependency>
@@ -35,31 +60,33 @@
       <version>4.1.0</version>
       <type>apklib</type>
     </dependency>
+
+    <dependency>
+      <groupId>${groupId}</groupId>
+      <artifactId>core</artifactId>
+      <version>${version}</version>
+    </dependency>
+
   </dependencies>
 
   <build>
+    <sourceDirectory>src</sourceDirectory>
     <plugins>
       <plugin>
         <groupId>com.jayway.maven.plugins.android.generation2</groupId>
         <artifactId>android-maven-plugin</artifactId>
         <configuration>
-          <androidManifestFile>${project.basedir}/AndroidManifest.xml</androidManifestFile>
-          <assetsDirectory>${project.basedir}/assets</assetsDirectory>
-          <resourceDirectory>${project.basedir}/res</resourceDirectory>
-          <nativeLibrariesDirectory>${project.basedir}/src/main/native</nativeLibrariesDirectory>
-          <sdk>
-            <platform>${android.sdk.platform}</platform>
-          </sdk>
-          <undeployBeforeDeploy>true</undeployBeforeDeploy>
+          <dex>
+            <jvmArguments>
+              <jvmArgument>-Xms256m</jvmArgument>
+              <jvmArgument>-Xmx512m</jvmArgument>
+            </jvmArguments>
+          </dex>
+          <sign>
+            <debug>both</debug>
+          </sign>
         </configuration>
         <extensions>true</extensions>
-      </plugin>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.5</source>
-          <target>1.5</target>
-        </configuration>
       </plugin>
     </plugins>
   </build>

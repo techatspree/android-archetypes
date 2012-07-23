@@ -35,22 +35,28 @@
     <android.sdk.platform>${platform}</android.sdk.platform>
     <android.maven.plugin.version>3.3.0</android.maven.plugin.version>
     <junit.version>4.10</junit.version>
+    <support-library.version>r7</support-library.version>
+    <scm.branch>master</scm.branch>
   </properties>
 
   <repositories>
+
     <repository>
       <id>public-mvn-repo-releases</id>
       <url>
         https://github.com/novoda/public-mvn-repo/raw/master/releases
       </url>
     </repository>
+
     <repository>
       <id>jakewharton</id>
       <url>http://r.jakewharton.com/maven/release/</url>
     </repository>
+
   </repositories>
 
   <pluginRepositories>
+
     <pluginRepository>
       <id>public-mvn-repo.plugin-releases</id>
       <url>https://github.com/novoda/public-mvn-repo/raw/master/releases</url>
@@ -58,6 +64,7 @@
         <enabled>false</enabled>
       </snapshots>
     </pluginRepository>
+
   </pluginRepositories>
 
   <scm>
@@ -73,37 +80,3 @@
     </license>
   </licenses>
 </project>
-
-  <!--<dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>com.google.android</groupId>
-        <artifactId>android</artifactId>
-        <version>${platform.version}</version>
-        <scope>provided</scope>
-      </dependency>
-      <dependency>
-        <groupId>com.google.android</groupId>
-        <artifactId>android-test</artifactId>
-        <version>${platform.version}</version>
-        <scope>provided</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-
-  <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>com.jayway.maven.plugins.android.generation2</groupId>
-          <artifactId>android-maven-plugin</artifactId>
-          <version>${android-plugin-version}</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>2.3.2</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-  </build>
-</project>-->
