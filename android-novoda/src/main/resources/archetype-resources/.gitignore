@@ -1,0 +1,43 @@
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# Jar files
+*.jar
+
+#ApkLibs
+*.apklib
+
+# generated files
+bin/
+gen/
+
+# Local configuration file (sdk path, etc)
+local.properties
+project.properties
+default.properties
+
+classes/
+
+
+#IntelliJ IDEA#
+###############
+*.iml
+*.ipr
+*.iws
+.idea
+target
+
+#Eclipse#
+#########
+.settings
+.classpath
+.project
+app/gen-external-apklibs/
+*.orig

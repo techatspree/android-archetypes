@@ -10,7 +10,7 @@
   </parent>
 
   <groupId>${groupId}</groupId>
-  <artifactId>${artifactId}-it</artifactId>
+  <artifactId>instrumentation</artifactId>
   <version>${version}</version>
   <packaging>apk</packaging>
   <name>${artifactId} - Integration tests</name>
