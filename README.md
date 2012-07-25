@@ -24,7 +24,7 @@ You can also set three optional properties :
 * The Android emulator's name to use with '-Demulator=my-avd'. If none specified the property <emulator> will be ignored in the pom file.
 * The targeted Android platform with '-Dplatform=7'. The Android SDK version will be automatically fetched to fit the corresponding API level. Available API Level are 3, 4, 7, 8, 9, 10 and 14. By default, it uses 10 (android 2.3.3).
 
-Once generated, the application is ready to be built and deployed. Start an android emulator, or plug an Android dev phone,
+Once generated, the application is ready to be built and deployed (you may need to configure your ANDROID_HOME environment variable to point to your Android SDK). Start an android emulator, or plug an Android dev phone,
 and launch:
 
     cd my-android-application
