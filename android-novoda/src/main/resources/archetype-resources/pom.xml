@@ -36,7 +36,6 @@
     <android.maven.plugin.version>3.3.0</android.maven.plugin.version>
     <junit.version>4.10</junit.version>
     <support-library.version>r7</support-library.version>
-    <powermock.version>1.4.12</powermock.version>
     <scm.branch>master</scm.branch>
   </properties>
 
