@@ -57,6 +57,29 @@ and launch:
 
 The application will be built, then the integration-tests will be built and executed on the Android device.
 
+The android-library-quickstart archetype
+----------------------------------------
+The library quickstart archetype creates a simple android library ready to be used with another android application. It's a pretty simple
+way to initiate an android project:
+
+    mvn archetype:generate \
+      -DarchetypeArtifactId=android-library-quickstart \
+      -DarchetypeGroupId=de.akquinet.android.archetypes \
+      -DarchetypeVersion=1.0.8 \
+      -DgroupId=your.company \
+      -DartifactId=my-android-application
+
+You can also set three optional properties :
+
+* The created 'package' with '-Dpackage=your.company.android'. By default it uses the given groupId.
+* The Android emulator's name to use with '-Demulator=my-avd'. If none specified the property <emulator> will be ignored in the pom file.
+* The targeted Android platform with '-Dplatform=7'. The Android SDK version will be automatically fetched to fit the corresponding API level. Available API Level are 3, 4, 7, 8, 9, 10 and 14. By default, it uses 10 (android 2.3.3).
+
+Once generated, the library is ready to be built:
+
+    cd my-android-application
+    mvn clean install
+
 The android-release archetype
 --------------------------
 
