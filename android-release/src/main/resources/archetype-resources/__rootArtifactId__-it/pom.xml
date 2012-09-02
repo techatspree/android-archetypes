@@ -26,11 +26,8 @@
   <dependencies>
     <dependency>
       <groupId>com.google.android</groupId>
-      <artifactId>android</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.google.android</groupId>
       <artifactId>android-test</artifactId>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>${groupId}</groupId>
@@ -38,12 +35,14 @@
       <type>apk</type>
       <version>${version}</version>
       <classifier>${zipaligned-classifier}</classifier> <!--  classifier set according to the ran profile -->
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>${groupId}</groupId>
       <artifactId>${rootArtifactId}</artifactId>
       <type>jar</type>
       <version>${version}</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
        <groupId>junit</groupId>

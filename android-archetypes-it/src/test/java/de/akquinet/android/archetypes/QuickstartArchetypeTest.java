@@ -71,12 +71,12 @@ public class QuickstartArchetypeTest {
 
 
         Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
-        Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<platform>10</platform>");
+        Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<platform>16</platform>");
         Helper.assertContains(new File("target/it/quickstart-default/android-test/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
         Helper.assertContains(new File("target/it/quickstart-default/android-test/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
 
         // Check that the Eclipse file is created (default.properties)
-        Helper.assertContains(new File("target/it/quickstart-default/android-test/default.properties"), "target=android-10");
+        Helper.assertContains(new File("target/it/quickstart-default/android-test/default.properties"), "target=android-16");
     }
 
     /**
@@ -219,12 +219,12 @@ public class QuickstartArchetypeTest {
 
 
         Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
-        Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<platform>10</platform>");
+        Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<platform>16</platform>");
         Helper.assertContains(new File("target/it/quickstart-default/android-test/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
         Helper.assertContains(new File("target/it/quickstart-default/android-test/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
 
         // Check that the Eclipse file is created (default.properties)
-        Helper.assertContains(new File("target/it/quickstart-default/android-test/default.properties"), "target=android-10");
+        Helper.assertContains(new File("target/it/quickstart-default/android-test/default.properties"), "target=android-16");
 
         // Check the emulator part
         Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<avd>test</avd>");
