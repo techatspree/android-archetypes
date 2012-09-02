@@ -4,7 +4,7 @@ android-archetypes
 This projects provides several Maven archetypes for Android. Those archetypes allows to quickly bootstrap a Maven project
 to develop an android application.
 
-These artifacts are based on the android-maven-plugin (http://code.google.com/p/maven-android-plugin/). It currently uses the 3.1.1 version.
+These artifacts are based on the android-maven-plugin (http://code.google.com/p/maven-android-plugin/). It currently uses the 3.3.0 version.
 
 The android-quickstart archetype
 --------------------------------
@@ -14,7 +14,7 @@ way to initiate an android project:
     mvn archetype:generate \
       -DarchetypeArtifactId=android-quickstart \
       -DarchetypeGroupId=de.akquinet.android.archetypes \
-      -DarchetypeVersion=1.0.8 \
+      -DarchetypeVersion=1.0.9 \
       -DgroupId=your.company \
       -DartifactId=my-android-application
 
@@ -22,7 +22,7 @@ You can also set three optional properties :
 
 * The created 'package' with '-Dpackage=your.company.android'. By default it uses the given groupId.
 * The Android emulator's name to use with '-Demulator=my-avd'. If none specified the property <emulator> will be ignored in the pom file.
-* The targeted Android platform with '-Dplatform=7'. The Android SDK version will be automatically fetched to fit the corresponding API level. Available API Level are 3, 4, 7, 8, 9, 10 and 14. By default, it uses 10 (android 2.3.3).
+* The targeted Android platform with '-Dplatform=7'. The Android SDK version will be automatically fetched to fit the corresponding API level. Available API Level are 3, 4, 7, 8, 9, 10, 14 and 16. By default, it uses 16 (android 4.1.1.4).
 
 Once generated, the application is ready to be built and deployed (you may need to configure your ANDROID_HOME environment variable to point to your Android SDK). Start an android emulator, or plug an Android dev phone,
 and launch:
@@ -41,13 +41,13 @@ This archetype creates a multi-module project containing an android application 
     mvn archetype:generate \
       -DarchetypeArtifactId=android-with-test \
       -DarchetypeGroupId=de.akquinet.android.archetypes \
-      -DarchetypeVersion=1.0.8 \
+      -DarchetypeVersion=1.0.9 \
       -DgroupId=com.foo.bar \
       -DartifactId=my-android-project \
       -Dpackage=com.foo.bar.android
 
 The 'package' value is optional (by default use the groupId). You can also set the targeted Android platform with
-'-Dplatform=x'. By default, it uses 10 (android 2.3.3).
+'-Dplatform=x'. By default, it uses 16 (android 4.1.1.4).
 
 Once generated, the application is ready to be built and tested. Start an android emulator, or plug an Android dev phone,
 and launch:
@@ -88,13 +88,13 @@ This archetype extends `android-with-test` with release management.
     mvn archetype:generate \
       -DarchetypeArtifactId=android-release \
       -DarchetypeGroupId=de.akquinet.android.archetypes \
-      -DarchetypeVersion=1.0.8 \
+      -DarchetypeVersion=1.0.9 \
       -DgroupId=com.foo.bar \
       -DartifactId=my-android-project \
       -Dpackage=com.foo.bar.android
 
 The 'package' value is optional (by default use the groupId). You can also set the targeted Android platform with
-'-Dplatform=x'. By default, it uses 10 (android 2.3.3).
+'-Dplatform=x'. By default, it uses 16 (android 4.1.1.4).
 
 Once generated, the application is ready to be built and tested. Start an android emulator, or plug an Android dev phone,
 and launch:
