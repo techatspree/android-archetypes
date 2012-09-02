@@ -86,7 +86,7 @@ public class ReleaseArchetypeTest {
         Helper.assertContains(new File("target/it/release-default/android-test/pom.xml"),"<artifactId>maven-enforcer-plugin</artifactId>");
 
         Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
-        Helper.assertContains(new File("target/it/release-default/android-test/pom.xml"), "<platform>10</platform>");
+        Helper.assertContains(new File("target/it/release-default/android-test/pom.xml"), "<platform>16</platform>");
         Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
         Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
 
@@ -99,8 +99,8 @@ public class ReleaseArchetypeTest {
         Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java"), "super(HelloAndroidActivity.class);");
 
         // Check that the Eclipse file is created (default.properties)
-        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "/default.properties"), "target=android-10");
-        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/default.properties"), "target=android-10");
+        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "/default.properties"), "target=android-16");
+        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/default.properties"), "target=android-16");
     }
 
     /**
@@ -282,7 +282,7 @@ public class ReleaseArchetypeTest {
         Helper.assertContains(new File("target/it/release-default/android-test/pom.xml"),"<artifactId>maven-enforcer-plugin</artifactId>");
 
         Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
-        Helper.assertContains(new File("target/it/release-default/android-test/pom.xml"), "<platform>10</platform>");
+        Helper.assertContains(new File("target/it/release-default/android-test/pom.xml"), "<platform>16</platform>");
         Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
         Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
 
@@ -295,8 +295,8 @@ public class ReleaseArchetypeTest {
         Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java"), "super(HelloAndroidActivity.class);");
 
         // Check that the Eclipse file is created (default.properties)
-        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "/default.properties"), "target=android-10");
-        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/default.properties"), "target=android-10");
+        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "/default.properties"), "target=android-16");
+        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/default.properties"), "target=android-16");
     }
 
     /**
