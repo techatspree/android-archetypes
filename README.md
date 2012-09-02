@@ -65,7 +65,7 @@ way to initiate an android project:
     mvn archetype:generate \
       -DarchetypeArtifactId=android-library-quickstart \
       -DarchetypeGroupId=de.akquinet.android.archetypes \
-      -DarchetypeVersion=1.0.8 \
+      -DarchetypeVersion=1.0.9 \
       -DgroupId=your.company \
       -DartifactId=my-android-application
 
