@@ -22,18 +22,18 @@
   </modules>
 
   <properties>
-    <android.version>#if(${platform} == 3) 1.5_r4
-      #elseif(${platform} == 4) 1.6_r2
-      #elseif(${platform} == 7) 2.1.2
-      #elseif(${platform} == 8) 2.2.1
-      #elseif(${platform} == 9) 2.3.1
-      #elseif(${platform} == 10) 2.3.3
-      #elseif(${platform} == 14) 4.0.1.2
-      #end
-    </android.version>
+    #if(${platform} == 3)<android.version>1.5_r4</android.version>
+    #elseif(${platform} == 4)<android.version>1.6_r2</android.version>
+    #elseif(${platform} == 7)<android.version>2.1.2</android.version>
+    #elseif(${platform} == 8)<android.version>2.2.1</android.version>
+    #elseif(${platform} == 9)<android.version>2.3.1</android.version>
+    #elseif(${platform} == 10)<android.version>2.3.3</android.version>
+    #elseif(${platform} == 14)<android.version>4.0.1.2</android.version>
+    #elseif(${platform} == 16)<android.version>4.1.1.4</android.version>
+    #end
     <android-test.version>2.3.3</android-test.version>
     <android.sdk.platform>${platform}</android.sdk.platform>
-    <android.maven.plugin.version>3.3.0</android.maven.plugin.version>
+    <android.maven.plugin.version>${android-plugin-version}</android.maven.plugin.version>
     <junit.version>4.10</junit.version>
     <support-library.version>r7</support-library.version>
     <scm.branch>master</scm.branch>
@@ -68,9 +68,9 @@
   </pluginRepositories>
 
   <scm>
-    <url><!--EXAMPLE https://github.com/novoda/P2D2/tree/${scm.branch}--></url>
-    <connection><!--EXAMPLE scm:git:git://https://github.com/novoda/P2D2.git--></connection>
-    <developerConnection><!--EXAMPLE scm:git:ssh://https://github.com/novoda/P2D2.git--></developerConnection>
+    <url><!--EXAMPLE https://github.com/novoda/SQLiteProvider/tree/${scm.branch}--></url>
+    <connection><!--EXAMPLE scm:git:git://https://github.com/novoda/SQLiteProvider.git--></connection>
+    <developerConnection><!--EXAMPLE scm:git:ssh://https://github.com/novoda/SQLiteProvider.git--></developerConnection>
   </scm>
 
   <licenses>

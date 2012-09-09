@@ -5,18 +5,18 @@
     <groupId>${groupId}</groupId>
     <artifactId>${artifactId}</artifactId>
     <version>${version}</version>
-    <packaging>apk</packaging>
+    <packaging>apklib</packaging>
     <name>${artifactId}</name>
 
     <properties>
         <platform.version>#if(${platform} == 3) 1.5_r4
-            #elseif(${platform} == 4) 1.6_r2
-            #elseif(${platform} == 7) 2.1.2
-            #elseif(${platform} == 8) 2.2.1
-            #elseif(${platform} == 9) 2.3.1
-            #elseif(${platform} == 10) 2.3.3
-            #elseif(${platform} == 14) 4.0.1.2
-            #elseif(${platform} == 16) 4.1.1.4
+          #elseif(${platform} == 4) 1.6_r2
+          #elseif(${platform} == 7) 2.1.2
+          #elseif(${platform} == 8) 2.2.1
+          #elseif(${platform} == 9) 2.3.1
+          #elseif(${platform} == 10) 2.3.3
+          #elseif(${platform} == 14) 4.0.1.2
+          #elseif(${platform} == 16) 4.1.1.4
             #end</platform.version>
     </properties>
 
@@ -55,10 +55,10 @@
 
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
+                <version>2.3.2</version>
                 <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
+                    <source>1.6</source>
+                    <target>1.6</target>
                 </configuration>
             </plugin>
         </plugins>

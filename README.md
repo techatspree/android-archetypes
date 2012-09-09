@@ -4,7 +4,7 @@ android-archetypes
 This projects provides several Maven archetypes for Android. Those archetypes allows to quickly bootstrap a Maven project
 to develop an android application.
 
-These artifacts are based on the android-maven-plugin (http://code.google.com/p/maven-android-plugin/). It currently uses the 3.1.1 version.
+These artifacts are based on the android-maven-plugin (http://code.google.com/p/maven-android-plugin/). It currently uses the 3.3.0 version.
 
 The android-quickstart archetype
 --------------------------------
@@ -14,7 +14,7 @@ way to initiate an android project:
     mvn archetype:generate \
       -DarchetypeArtifactId=android-quickstart \
       -DarchetypeGroupId=de.akquinet.android.archetypes \
-      -DarchetypeVersion=1.0.8 \
+      -DarchetypeVersion=1.0.9 \
       -DgroupId=your.company \
       -DartifactId=my-android-application
 
@@ -22,9 +22,9 @@ You can also set three optional properties :
 
 * The created 'package' with '-Dpackage=your.company.android'. By default it uses the given groupId.
 * The Android emulator's name to use with '-Demulator=my-avd'. If none specified the property <emulator> will be ignored in the pom file.
-* The targeted Android platform with '-Dplatform=7'. The Android SDK version will be automatically fetched to fit the corresponding API level. Available API Level are 3, 4, 7, 8, 9, 10 and 14. By default, it uses 10 (android 2.3.3).
+* The targeted Android platform with '-Dplatform=7'. The Android SDK version will be automatically fetched to fit the corresponding API level. Available API Level are 3, 4, 7, 8, 9, 10, 14 and 16. By default, it uses 16 (android 4.1.1.4).
 
-Once generated, the application is ready to be built and deployed. Start an android emulator, or plug an Android dev phone,
+Once generated, the application is ready to be built and deployed (you may need to configure your ANDROID_HOME environment variable to point to your Android SDK). Start an android emulator, or plug an Android phone,
 and launch:
 
     cd my-android-application
@@ -41,21 +41,44 @@ This archetype creates a multi-module project containing an android application 
     mvn archetype:generate \
       -DarchetypeArtifactId=android-with-test \
       -DarchetypeGroupId=de.akquinet.android.archetypes \
-      -DarchetypeVersion=1.0.8 \
+      -DarchetypeVersion=1.0.9 \
       -DgroupId=com.foo.bar \
       -DartifactId=my-android-project \
       -Dpackage=com.foo.bar.android
 
 The 'package' value is optional (by default use the groupId). You can also set the targeted Android platform with
-'-Dplatform=x'. By default, it uses 10 (android 2.3.3).
+'-Dplatform=x'. By default, it uses 16 (android 4.1.1.4).
 
-Once generated, the application is ready to be built and tested. Start an android emulator, or plug an Android dev phone,
+Once generated, the application is ready to be built and tested. Start an android emulator, or plug an Android phone,
 and launch:
 
     cd my-android-project
     mvn clean install
 
 The application will be built, then the integration-tests will be built and executed on the Android device.
+
+The android-library-quickstart archetype
+----------------------------------------
+The library quickstart archetype creates a simple android library ready to be used with another android application. It's a pretty simple
+way to initiate an android project:
+
+    mvn archetype:generate \
+      -DarchetypeArtifactId=android-library-quickstart \
+      -DarchetypeGroupId=de.akquinet.android.archetypes \
+      -DarchetypeVersion=1.0.9 \
+      -DgroupId=your.company \
+      -DartifactId=my-android-application
+
+You can also set three optional properties :
+
+* The created 'package' with '-Dpackage=your.company.android'. By default it uses the given groupId.
+* The Android emulator's name to use with '-Demulator=my-avd'. If none specified the property <emulator> will be ignored in the pom file.
+* The targeted Android platform with '-Dplatform=7'. The Android SDK version will be automatically fetched to fit the corresponding API level. Available API Level are 3, 4, 7, 8, 9, 10 and 14. By default, it uses 10 (android 2.3.3).
+
+Once generated, the library is ready to be built:
+
+    cd my-android-application
+    mvn clean install
 
 The android-release archetype
 --------------------------
@@ -65,15 +88,15 @@ This archetype extends `android-with-test` with release management.
     mvn archetype:generate \
       -DarchetypeArtifactId=android-release \
       -DarchetypeGroupId=de.akquinet.android.archetypes \
-      -DarchetypeVersion=1.0.8 \
+      -DarchetypeVersion=1.0.9 \
       -DgroupId=com.foo.bar \
       -DartifactId=my-android-project \
       -Dpackage=com.foo.bar.android
 
 The 'package' value is optional (by default use the groupId). You can also set the targeted Android platform with
-'-Dplatform=x'. By default, it uses 10 (android 2.3.3).
+'-Dplatform=x'. By default, it uses 16 (android 4.1.1.4).
 
-Once generated, the application is ready to be built and tested. Start an android emulator, or plug an Android dev phone,
+Once generated, the application is ready to be built and tested. Start an android emulator, or plug an Android phone,
 and launch:
 
     cd my-android-project
@@ -113,6 +136,39 @@ The archetype contains a test key store which *MUST NOT BE USED IN PRODUCTION*. 
 
 Be aware that Android cannot re-deploy artifacts using a different key, so be sure to undeploy all artifacts before running the
 release.
+
+The android-novoda archetype
+--------------------------------
+The archetype is based on experiences and setup used by [Novoda](http://www.novoda.com). This archetype will provided you with following modules:
+
+    app - main Android structure holder dependent on core
+    core - this is plain Java "zone", stuff that can be easier tested with JUnit and mocked with various frameworks (we try this section to be as much independent from Android, but sometimes some stuff sneak inside)
+    instrumentation  - integration tests using instrumentation, Robolectric, out-of-box setup for Emma reports you can use on your Jenkins CI etc
+
+To initiate an android project use:
+
+    mvn archetype:generate \
+      -DarchetypeArtifactId=android-novoda \
+      -DarchetypeGroupId=de.akquinet.android.archetypes \
+      -DarchetypeVersion=1.0.9 \
+      -DgroupId=your.company \
+      -DartifactId=my-android-application
+
+You can also set three optional properties :
+
+* The created 'package' with '-Dpackage=your.company.android'. By default it uses the given groupId.
+* The targeted Android platform with '-Dplatform=7'. The Android SDK version will be automatically fetched to fit the corresponding API level. Available API Level are 3, 4, 7, 8, 9, 10, 14 and 16. By default, it uses 16 (android 4.1.1.4).
+
+### Warning
+'-Demulator=my-avd' is not supported due different structure of archetype from above listed
+
+Once generated, the application is ready to be built and deployed (you may need to configure your ANDROID_HOME environment variable to point to your Android SDK). Start an android emulator, or plug an Android phone,
+and launch:
+
+    cd my-android-application
+    mvn clean install android:deploy
+
+The application will be built and deployed on the device.
 
 Setting the maven-android-plugin version
 ----------------------------------------
