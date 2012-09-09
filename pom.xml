@@ -37,7 +37,8 @@
         <module>android-with-test</module>
         <module>android-release</module>
         <module>android-archetypes-it</module>
-        <module>android-library-quickstart</module>
+        <module>android-novoda</module>
+      <module>android-library-quickstart</module>
     </modules>
 
     <organization>

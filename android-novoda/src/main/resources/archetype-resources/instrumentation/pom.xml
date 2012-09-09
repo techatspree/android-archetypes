@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>${groupId}</groupId>
+    <artifactId>${rootArtifactId}-parent</artifactId>
+    <version>${version}</version>
+  </parent>
+
+  <groupId>${groupId}</groupId>
+  <artifactId>instrumentation</artifactId>
+  <version>${version}</version>
+  <packaging>apk</packaging>
+  <name>${artifactId} - Integration tests</name>
+
+  <properties>
+    <eclipse.excludeArtifactIds>android, android-test</eclipse.excludeArtifactIds>
+    <tested.project>app</tested.project>
+  </properties>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>com.google.android</groupId>
+      <artifactId>android-test</artifactId>
+      <version>${android-test.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>${groupId}</groupId>
+      <artifactId>app</artifactId>
+      <type>apk</type>
+      <version>${version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>${groupId}</groupId>
+      <artifactId>app</artifactId>
+      <type>jar</type>
+      <version>${version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <sourceDirectory>src</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+        <artifactId>android-maven-plugin</artifactId>
+        <configuration>
+          <test>
+            <skip>false</skip>
+            <createReport>true</createReport>
+            <coverage>true</coverage>
+          </test>
+        </configuration>
+        <extensions>true</extensions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>emma</id>
+      <dependencies>
+        <dependency>
+          <groupId>emma</groupId>
+          <artifactId>emma</artifactId>
+          <type>jar</type>
+          <scope>compile</scope>
+          <version>2.1.5320</version>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>properties-maven-plugin</artifactId>
+            <version>1.0-alpha-1</version>
+            <executions>
+              <execution>
+                <phase>initialize</phase>
+                <goals>
+                  <goal>read-project-properties</goal>
+                </goals>
+                <configuration>
+                  <files>
+                    <file>project.properties</file>
+                  </files>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+            <artifactId>android-maven-plugin</artifactId>
+            <configuration>
+              <test>
+                <skip>false</skip>
+                <coverage>true</coverage>
+                <coverageFile>/mnt/sdcard/${groupId}/files/coverage.ec</coverageFile>
+                <createReport>true</createReport>
+              </test>
+            </configuration>
+            <extensions>true</extensions>
+            <executions>
+              <execution>
+                <id>pull-coverage</id>
+                <phase>post-integration-test</phase>
+                <goals>
+                  <goal>pull</goal>
+                </goals>
+                <configuration>
+                  <pullSource>/mnt/sdcard/${groupId}/files/coverage.ec</pullSource>
+                  <pullDestination>${tested.project}/target/emma/coverage.ec</pullDestination>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+      <reporting>
+        <plugins>
+          <plugin>
+            <groupId>org.sonatype.maven.plugin</groupId>
+            <artifactId>emma4it-maven-plugin</artifactId>
+            <version>1.4.20120522</version>
+            <configuration>
+              <metadatas>${tested.project}/target/emma/coverage.em,${tested.project}/src/</metadatas>
+              <instrumentations>${tested.project}/target/emma/coverage.ec</instrumentations>
+              <reportDirectory>${tested.project}/target/emma/</reportDirectory>
+              <baseDirectory>${tested.project}/target/</baseDirectory>
+              <formats>xml,html</formats>
+            </configuration>
+          </plugin>
+        </plugins>
+      </reporting>
+    </profile>
+  </profiles>
+</project>
