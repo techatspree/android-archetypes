@@ -74,6 +74,7 @@ public class QuickstartArchetypeTest {
         Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<platform>16</platform>");
         Helper.assertContains(new File("target/it/quickstart-default/android-test/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
         Helper.assertContains(new File("target/it/quickstart-default/android-test/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
+        Helper.assertContains(new File("target/it/quickstart-default/android-test/AndroidManifest.xml"), "android:targetSdkVersion=\"16\"");
 
         // Check that the Eclipse file is created (default.properties)
         Helper.assertContains(new File("target/it/quickstart-default/android-test/default.properties"), "target=android-16");

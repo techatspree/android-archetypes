@@ -89,6 +89,7 @@ public class ReleaseArchetypeTest {
         Helper.assertContains(new File("target/it/release-default/android-test/pom.xml"), "<platform>16</platform>");
         Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
         Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
+        Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "android:targetSdkVersion=\"16\"");
 
         Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
         Helper.assertContains(new File("target/it/release-default/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml"), "<uses-library android:name=\"android.test.runner\" />");
@@ -153,6 +154,7 @@ public class ReleaseArchetypeTest {
         Helper.assertContains(new File("target/it/release-with-platform/android-test/pom.xml"), "<platform>8</platform>");
         Helper.assertContains(new File("target/it/release-with-platform/android-test/"+ Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
         Helper.assertContains(new File("target/it/release-with-platform/android-test/"+ Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
+        Helper.assertContains(new File("target/it/release-with-platform/android-test/"+ Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "android:targetSdkVersion=\"8\"");
 
         Helper.assertContains(new File("target/it/release-with-platform/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
         Helper.assertContains(new File("target/it/release-with-platform/android-test/"+ Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml"), "<uses-library android:name=\"android.test.runner\" />");
