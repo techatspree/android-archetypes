@@ -205,7 +205,7 @@ public class QuickstartArchetypeTest {
         cli.add("-DarchetypeCatalog=local");
         cli.add("-DarchetypeRepository=local");
         cli.add("-Demulator=test");
-        cli.add("-Dandroid-plugin-version=3.1.1");
+        cli.add("-Dandroid-plugin-version=3.5.0");
         verifier.executeGoal("org.apache.maven.plugins:maven-archetype-plugin:2.0:generate");
 
 

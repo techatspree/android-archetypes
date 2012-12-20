@@ -150,6 +150,15 @@
       <build>
         <plugins>
           <plugin>
+            <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+            <artifactId>android-maven-plugin</artifactId>
+            <version>${android-plugin}</version>
+            <configuration>
+             <release>true</release>
+            </configuration>
+          </plugin>
+
+          <plugin>
             <artifactId>maven-enforcer-plugin</artifactId>
             <executions>
               <execution>
