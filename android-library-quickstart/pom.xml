@@ -18,7 +18,7 @@
   <parent>
     <artifactId>android-archetype-project</artifactId>
     <groupId>de.akquinet.android.archetypes</groupId>
-    <version>1.0.9</version>
+    <version>1.0.10-SNAPSHOT</version>
   </parent>
 
   <groupId>de.akquinet.android.archetypes</groupId>
