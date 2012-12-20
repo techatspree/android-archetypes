@@ -53,12 +53,17 @@
         </license>
     </licenses>
 
+    <properties>
+        <archetype.version>2.2</archetype.version>
+    </properties>
+
+
     <build>
         <extensions>
             <extension>
                 <groupId>org.apache.maven.archetype</groupId>
                 <artifactId>archetype-packaging</artifactId>
-                <version>2.0</version>
+                <version>${archetype.version}</version>
             </extension>
         </extensions>
 
@@ -174,7 +179,7 @@
             <plugins>
                 <plugin>
                     <artifactId>maven-archetype-plugin</artifactId>
-                    <version>2.2</version>
+                    <version>${archetype.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
