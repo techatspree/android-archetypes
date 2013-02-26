@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>${groupId}</groupId>
+    <artifactId>${artifactId}</artifactId>
+    <version>${version}</version>
+    <packaging>apk</packaging>
+    <name>${artifactId}</name>
+
+    <properties>
+        <platform.version>#if(${platform} == 3) 1.5_r4
+            #elseif(${platform} == 4) 1.6_r2
+            #elseif(${platform} == 7) 2.1.2
+            #elseif(${platform} == 8) 2.2.1
+            #elseif(${platform} == 9) 2.3.1
+            #elseif(${platform} == 10) 2.3.3
+            #elseif(${platform} == 14) 4.0.1.2
+            #elseif(${platform} == 16) 4.1.1.4
+            #end</platform.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>gcmutils-repo-releases</id>
+            <url>http://gcmutils.googlecode.com/svn/trunk/repository/releases</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.google.android</groupId>
+            <artifactId>android</artifactId>
+            <version>${platform.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>net.jarlehansen.android.gcm</groupId>
+            <artifactId>gcm-client-utils</artifactId>
+            <version>0.6.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.jayway.maven.plugins.android.generation2</groupId>
+                <artifactId>android-maven-plugin</artifactId>
+                <version>${android-plugin-version}</version>
+                <configuration>
+                    <androidManifestFile>${project.basedir}/AndroidManifest.xml</androidManifestFile>
+                    <assetsDirectory>${project.basedir}/assets</assetsDirectory>
+                    <resourceDirectory>${project.basedir}/res</resourceDirectory>
+                    <nativeLibrariesDirectory>${project.basedir}/src/main/native</nativeLibrariesDirectory>
+                    <sdk>
+                        <platform>${platform}</platform>
+                    </sdk>
+                    #if(${emulator} != "not-specified")
+                    <emulator>
+                        <avd>${emulator}</avd>
+                    </emulator>
+                    #end
+                    <undeployBeforeDeploy>true</undeployBeforeDeploy>
+                </configuration>
+                <extensions>true</extensions>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.5.1</version>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

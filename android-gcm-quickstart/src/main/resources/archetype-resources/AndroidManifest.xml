@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="${package}" android:versionCode="1" android:versionName="${version}">
+
+  <uses-sdk android:minSdkVersion="8"
+            android:targetSdkVersion="${platform}" />
+
+  <permission android:name="${package}.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
+  <uses-permission android:name="${package}.permission.C2D_MESSAGE"/>
+
+  <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE"/>
+  <uses-permission android:name="android.permission.INTERNET"/>
+  <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+  <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+  <application android:icon="@drawable/icon" android:label="@string/app_name">
+    <service android:name=".GCMIntentService"/>
+
+    <receiver android:name="com.google.android.gcm.GCMBroadcastReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+        <intent-filter>
+          <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
+          <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
+        <category android:name="${package}"/>
+      </intent-filter>
+    </receiver>
+
+    <activity android:name=".HelloAndroidActivity">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+  </application>
+
+</manifest>
+
