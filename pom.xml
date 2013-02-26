@@ -38,6 +38,7 @@
         <module>android-release</module>
         <module>android-archetypes-it</module>
         <module>android-library-quickstart</module>
+        <module>android-gcm-quickstart</module>
     </modules>
 
     <organization>
