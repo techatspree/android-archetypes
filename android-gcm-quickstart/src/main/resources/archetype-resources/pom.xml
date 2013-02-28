@@ -17,7 +17,9 @@
             #elseif(${platform} == 10) 2.3.3
             #elseif(${platform} == 14) 4.0.1.2
             #elseif(${platform} == 16) 4.1.1.4
-            #end</platform.version>
+            #end
+        </platform.version>
+        <gcmutils.version>0.7.0</gcmutils.version>
     </properties>
 
     <repositories>
@@ -26,6 +28,12 @@
             <url>http://gcmutils.googlecode.com/svn/trunk/repository/releases</url>
         </repository>
     </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>gcmutils-pluginrepo-releases</id>
+            <url>http://gcmutils.googlecode.com/svn/trunk/repository/releases</url>
+        </pluginRepository>
+    </pluginRepositories>
 
     <dependencies>
         <dependency>
@@ -35,15 +43,23 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- Simple utility classes for GCM -->
         <dependency>
             <groupId>net.jarlehansen.android.gcm</groupId>
             <artifactId>gcm-client-utils</artifactId>
-            <version>0.6.0</version>
+            <version>${gcmutils.version}</version>
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <!-- Provides a local GCM test server (mvn gcmutils:run-server) -->
+            <plugin>
+                <groupId>net.jarlehansen.android.gcm.plugins</groupId>
+                <artifactId>gcmutils-maven-plugin</artifactId>
+                <version>${gcmutils.version}</version>
+            </plugin>
+
             <plugin>
                 <groupId>com.jayway.maven.plugins.android.generation2</groupId>
                 <artifactId>android-maven-plugin</artifactId>
@@ -68,7 +84,7 @@
 
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
+                <version>3.0</version>
                 <configuration>
                     <source>1.5</source>
                     <target>1.5</target>
