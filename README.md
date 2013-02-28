@@ -153,13 +153,13 @@ The 'senderId' value is found in the [Google APIs console](https://code.google.c
 You can also set one optional property :
 * The URL of your GCM server, with '-DgcmReceiverUrl=http://my-gcm-server'. By default it uses the local test server provided by the gcmutils-maven-plugin.
 
-Generated files includes the assets/gcmutils.properties configuration file, containing GCM specific config values.
-Once generated, the library is ready to be built:
+Generated files includes the assets/gcmutils.properties configuration file, containing GCM specific values.
+Once generated, the library is ready to be built with:
 
     cd my-android-application
     mvn clean install
 
-Before starting the test server, add the API Key. This can be added in the user settings file, .m2/settings.xml, by system property (-DapiKey=) or in the pom.xml (not recommended).
+Before starting the test server add the API Key configuration. This can be added in the user settings file, .m2/settings.xml, by system property '-DapiKey=' or in the pom.xml (not recommended).
 When the key is added, you can start the GCM test server:
 
     mvn gcmutils:run-server
@@ -168,7 +168,8 @@ optionally:
 
     mvn gcmutils:run-server -DapiKey=my-api-key
 
-The server is by default available at http://localhost:9595.
+By default the server is available at http://localhost:9595
+
 The gcmutils-maven-plugin provides three additional configuration options:
 * apiKey - Must be included, but is not recommended to be added in pom.xml
 * port - The port number of the test server. Default: 9595

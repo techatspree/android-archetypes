@@ -19,7 +19,7 @@
             #elseif(${platform} == 16) 4.1.1.4
             #end
         </platform.version>
-        <gcmutils.version>0.7.0-SNAPSHOT</gcmutils.version>
+        <gcmutils.version>0.7.0</gcmutils.version>
     </properties>
 
     <repositories>
@@ -53,7 +53,7 @@
 
     <build>
         <plugins>
-            <!-- Provides a local GCM test server -->
+            <!-- Provides a local GCM test server (mvn gcmutils:run-server) -->
             <plugin>
                 <groupId>net.jarlehansen.android.gcm.plugins</groupId>
                 <artifactId>gcmutils-maven-plugin</artifactId>
