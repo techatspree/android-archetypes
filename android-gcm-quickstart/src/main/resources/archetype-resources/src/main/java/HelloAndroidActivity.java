@@ -24,7 +24,7 @@ public class HelloAndroidActivity extends Activity {
 
         GCMRegistrar.checkDevice(this);
         GCMUtils.checkExtended(this);
-        GCMUtils.getAndSendRegistrationId(this);
+        GCMUtils.getAndSendRegId(this);
     }
 
 }
