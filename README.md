@@ -81,7 +81,7 @@ Once generated, the library is ready to be built:
     mvn clean install
 
 The android-release archetype
---------------------------
+----------------------------
 
 This archetype extends `android-with-test` with release management.
 
@@ -136,6 +136,48 @@ The archetype contains a test key store which *MUST NOT BE USED IN PRODUCTION*. 
 
 Be aware that Android cannot re-deploy artifacts using a different key, so be sure to undeploy all artifacts before running the
 release.
+
+The android-gcm-quickstart archetype
+------------------------------------
+The android-gcm-quickstart creates a simple Google Cloud Messaging application.
+
+    mvn archetype:generate \
+      -DarchetypeArtifactId=android-gcm-quickstart \
+      -DarchetypeGroupId=de.akquinet.android.archetypes \
+      -DarchetypeVersion=1.0.9 \
+      -DgroupId=your.company \
+      -DartifactId=my-android-application
+      -DsenderId=my-sender-id
+
+The 'senderId' value is found in the [Google APIs console](https://code.google.com/apis/console).
+You can also set one optional property :
+* The URL of your GCM server, with '-DgcmReceiverUrl=http://my-gcm-server'. By default it uses the local test server provided by the gcmutils-maven-plugin.
+
+Generated files includes the assets/gcmutils.properties configuration file, containing GCM specific values.
+Once generated, the library is ready to be built with:
+
+    cd my-android-application
+    mvn clean install
+
+Before starting the test server add the API Key configuration. This can be added in the user settings file, .m2/settings.xml, by system property '-DapiKey=' or in the pom.xml (not recommended).
+When the key is added, you can start the GCM test server:
+
+    mvn gcmutils:run-server
+
+optionally:
+
+    mvn gcmutils:run-server -DapiKey=my-api-key
+
+By default the server is available at http://localhost:9595
+
+The gcmutils-maven-plugin provides three additional configuration options:
+* apiKey - Must be included, but is not recommended to be added in pom.xml
+* port - The port number of the test server. Default: 9595
+* contextRoot - The context root of the test server. Default: "/"
+
+Detailed information on the gcmutils-maven-plugin is available [here](https://code.google.com/p/gcmutils/wiki/MavenPlugin).
+For more information on GCM and how to obtain the senderId and API Key, see [GCM: Getting Started](http://developer.android.com/google/gcm/gs.html).
+
 
 Setting the maven-android-plugin version
 ----------------------------------------

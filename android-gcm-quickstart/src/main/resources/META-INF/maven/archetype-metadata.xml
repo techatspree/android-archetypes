@@ -14,8 +14,10 @@
         <requiredProperty key="android-plugin-version">
             <defaultValue>3.5.0</defaultValue>
         </requiredProperty>
-        <requiredProperty key="sender-id"/>
-        <requiredProperty key="gcm-receiver-url"/>
+        <requiredProperty key="senderId"/>
+        <requiredProperty key="gcmReceiverUrl">
+            <defaultValue>http://10.0.2.2:9595</defaultValue>
+        </requiredProperty>
     </requiredProperties>
 
     <fileSets>
