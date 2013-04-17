@@ -3,12 +3,11 @@ package ${package};
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import com.google.android.gcm.GCMRegistrar;
 import net.jarlehansen.android.gcm.client.GCMUtils;
 
 public class HelloAndroidActivity extends Activity {
-
-    static String TAG = "${artifactId}";
 
     /**
      * Called when the activity is first created.
@@ -19,12 +18,19 @@ public class HelloAndroidActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-		Log.i(TAG, "onCreate");
-        setContentView(R.layout.main);
+        
+        setContentView(R.layout.activity_main);
 
         GCMRegistrar.checkDevice(this);
         GCMUtils.checkExtended(this);
         GCMUtils.getAndSendRegId(this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+	// Inflate the menu; this adds items to the action bar if it is present.
+	getMenuInflater().inflate(R.menu.main, menu);
+	return true;
     }
 
 }
