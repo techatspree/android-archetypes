@@ -1,75 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>${groupId}</groupId>
-  <artifactId>${artifactId}-parent</artifactId>
-  <version>${version}</version>
-  <packaging>pom</packaging>
-  <name>${artifactId} - Parent</name>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>${groupId}</groupId>
+	<artifactId>${artifactId}-parent</artifactId>
+	<version>${version}</version>
+	<packaging>pom</packaging>
+	<name>${artifactId} - Parent</name>
 
-  <modules>
-    <module>${rootArtifactId}</module>
-    <module>${rootArtifactId}-it</module>
-  </modules>
+	<modules>
+		<module>${rootArtifactId}</module>
+		<module>${rootArtifactId}-it</module>
+	</modules>
 
-  <properties>
-    <platform.version>#if(${platform} == 3) 1.5_r4
-      #elseif(${platform} == 4) 1.6_r2
-      #elseif(${platform} == 7) 2.1.2
-      #elseif(${platform} == 8) 2.2.1
-      #elseif(${platform} == 9) 2.3.1
-      #elseif(${platform} == 10) 2.3.3
-      #elseif(${platform} == 14) 4.0.1.2
-      #elseif(${platform} == 16) 4.1.1.4
-      #end
-    </platform.version>
-  </properties>
+	<properties>
+		<platform.version>#if(${platform} == 3) 1.5_r4
+			#elseif(${platform} ==
+			4) 1.6_r2
+			#elseif(${platform} == 7) 2.1.2
+			#elseif(${platform} == 8)
+			2.2.1
+			#elseif(${platform} == 9) 2.3.1
+			#elseif(${platform} == 10) 2.3.3
+			#elseif(${platform} == 14) 4.0.1.2
+			#elseif(${platform} == 16) 4.1.1.4
+			#end
+		</platform.version>
+		<android.plugin.version>${android-plugin-version}</android.plugin.version>
+	</properties>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>com.google.android</groupId>
-        <artifactId>android</artifactId>
-        <version>${platform.version}</version>
-        <scope>provided</scope>
-      </dependency>
-      <dependency>
-        <groupId>com.google.android</groupId>
-        <artifactId>android-test</artifactId>
-        <version>${platform.version}</version>
-        <scope>provided</scope>
-      </dependency>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.google.android</groupId>
+				<artifactId>android</artifactId>
+				<version>${platform.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.google.android</groupId>
+				<artifactId>android-test</artifactId>
+				<version>${platform.version}</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.11</version>
+				<scope>provided</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
-      <!-- Androlog is a logging and reporting library for Android -->
-      <dependency>
-        <groupId>de.akquinet.android.androlog</groupId>
-        <artifactId>androlog</artifactId>
-        <version>1.0.5</version>
-      </dependency>
-
-      <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.10</version>
-        <scope>provided</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-
-  <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>com.jayway.maven.plugins.android.generation2</groupId>
-          <artifactId>android-maven-plugin</artifactId>
-          <version>${android-plugin-version}</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>2.5.1</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-  </build>
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+					<artifactId>android-maven-plugin</artifactId>
+					<version>${android.plugin.version}</version>
+					<configuration>
+						<sdk>
+							<platform>${platform}</platform>
+						</sdk> 
+						#if(${emulator} != "not-specified")
+						<emulator>
+							<avd>${emulator}</avd>
+						</emulator>
+						#end
+					</configuration>
+				</plugin>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.1</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
 </project>

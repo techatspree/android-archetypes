@@ -23,9 +23,12 @@ import org.apache.maven.it.Verifier;
 import org.junit.Before;
 import org.junit.Test;
 
+import de.akquinet.android.archetypes.fest.AndroidManifest;
+import de.akquinet.android.archetypes.fest.Pom;
+import static de.akquinet.android.archetypes.fest.AndroidArchetypeAssertions.assertThat;
 
 public class QuickstartArchetypeTest {
-
+	
     @Before
     public void setUp() {
         Helper.defineArchetypeVersion();
@@ -59,23 +62,22 @@ public class QuickstartArchetypeTest {
 
         verifier.executeGoal("org.apache.maven.plugins:maven-archetype-plugin:2.0:generate");
 
-
         // Check folder create.
-        verifier.assertFilePresent("android-test");
-        verifier.assertFilePresent("android-test/AndroidManifest.xml");
-        verifier.assertFilePresent("android-test/pom.xml");
-        verifier.assertFilePresent("android-test/res/values/strings.xml");
-        verifier.assertFilePresent("android-test/res/layout/main.xml");
-        verifier.assertFilePresent("android-test/assets");
-        verifier.assertFilePresent("android-test/src/main/java/android/archetypes/test/HelloAndroidActivity.java");
+        Helper.checkAppFolderStructureAndFiles(verifier, Constants.TEST_ARTIFACT_ID, Constants.TEST_GROUP_ID);
+        
+        Pom pomFile = new Pom("target/it/quickstart-default/android-test/pom.xml");
 
-
-        Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
-        Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<platform>16</platform>");
-        Helper.assertContains(new File("target/it/quickstart-default/android-test/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
-        Helper.assertContains(new File("target/it/quickstart-default/android-test/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
-        Helper.assertContains(new File("target/it/quickstart-default/android-test/AndroidManifest.xml"), "android:targetSdkVersion=\"16\"");
-
+        assertThat(pomFile)
+        	.isAndroidMavenPluginDeclared()
+        	.isPlatformDeclared(16);
+        
+        AndroidManifest manifest = new AndroidManifest("target/it/quickstart-default/android-test/AndroidManifest.xml");
+        
+        assertThat(manifest)
+        	.hasActivity(".HelloAndroidActivity")
+        	.hasPackage("android.archetypes.test")
+        	.hasTargetVersion(16);
+        
         // Check that the Eclipse file is created (default.properties)
         Helper.assertContains(new File("target/it/quickstart-default/android-test/default.properties"), "target=android-16");
     }
@@ -92,7 +94,7 @@ public class QuickstartArchetypeTest {
 
         Verifier verifier  = new Verifier( root.getAbsolutePath(), false );
         verifier.setAutoclean(false);
-
+        
         verifier.displayStreamBuffers();
 
         @SuppressWarnings("unchecked")
@@ -109,21 +111,22 @@ public class QuickstartArchetypeTest {
 
         verifier.executeGoal("org.apache.maven.plugins:maven-archetype-plugin:2.0:generate");
 
-
         // Check folder create.
-        verifier.assertFilePresent("android-test");
-        verifier.assertFilePresent("android-test/AndroidManifest.xml");
-        verifier.assertFilePresent("android-test/pom.xml");
-        verifier.assertFilePresent("android-test/res/values/strings.xml");
-        verifier.assertFilePresent("android-test/res/layout/main.xml");
-        verifier.assertFilePresent("android-test/assets");
-        verifier.assertFilePresent("android-test/src/main/java/android/archetypes/test/HelloAndroidActivity.java");
+        Helper.checkAppFolderStructureAndFiles(verifier, Constants.TEST_ARTIFACT_ID, Constants.TEST_GROUP_ID);
+        
+        
+        Pom pomFile = new Pom("target/it/quickstart-with-platform/android-test/pom.xml");
 
-
-        Helper.assertContains(new File("target/it/quickstart-with-platform/android-test/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
-        Helper.assertContains(new File("target/it/quickstart-with-platform/android-test/pom.xml"), "<platform>8</platform>");
-        Helper.assertContains(new File("target/it/quickstart-with-platform/android-test/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
-        Helper.assertContains(new File("target/it/quickstart-with-platform/android-test/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
+        assertThat(pomFile)
+        	.isAndroidMavenPluginDeclared()
+        	.isPlatformDeclared(8);
+        	
+        AndroidManifest manifest = new AndroidManifest("target/it/quickstart-with-platform/android-test/AndroidManifest.xml");
+        
+        assertThat(manifest)
+        	.hasActivity(".HelloAndroidActivity")
+        	.hasPackage("android.archetypes.test")
+        	.hasTargetVersion(8);
 
         // Check that the Eclipse file is created (default.properties)
         Helper.assertContains(new File("target/it/quickstart-with-platform/android-test/default.properties"), "target=android-8");
@@ -159,23 +162,23 @@ public class QuickstartArchetypeTest {
 
         verifier.executeGoal("org.apache.maven.plugins:maven-archetype-plugin:2.0:generate");
 
+        // Check folder create and installed files
+        Helper.checkAppFolderStructureAndFiles(verifier, Constants.TEST_ARTIFACT_ID, "foo");
 
-        // Check folder create.
-        verifier.assertFilePresent("android-test");
-        verifier.assertFilePresent("android-test/AndroidManifest.xml");
-        verifier.assertFilePresent("android-test/pom.xml");
-        verifier.assertFilePresent("android-test/res/values/strings.xml");
-        verifier.assertFilePresent("android-test/res/layout/main.xml");
-        verifier.assertFilePresent("android-test/assets");
-        verifier.assertFilePresent("android-test/src/main/java/foo/HelloAndroidActivity.java");
+        Pom pomFile = new Pom("target/it/quickstart-with-platform-and-package/android-test/pom.xml");
 
-
-        Helper.assertContains(new File("target/it/quickstart-with-platform-and-package/android-test/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
-        Helper.assertContains(new File("target/it/quickstart-with-platform-and-package/android-test/pom.xml"), "<platform>4</platform>");
-        Helper.assertContains(new File("target/it/quickstart-with-platform-and-package/android-test/pom.xml"), "1.6_r2"); // Android lib version
-        Helper.assertContains(new File("target/it/quickstart-with-platform-and-package/android-test/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
-        Helper.assertContains(new File("target/it/quickstart-with-platform-and-package/android-test/AndroidManifest.xml"), "package=\"foo\"");
-
+        assertThat(pomFile)
+        	.isAndroidMavenPluginDeclared()
+        	.isPlatformDeclared(4)
+        	.hasText("1.6_r2"); // Android lib version
+        
+        AndroidManifest manifest = new AndroidManifest("target/it/quickstart-with-platform-and-package/android-test/AndroidManifest.xml");
+        
+        assertThat(manifest)
+        	.hasActivity(".HelloAndroidActivity")
+        	.hasPackage("foo")
+        	.hasTargetVersion(4);
+        
     }
 
 
@@ -208,27 +211,25 @@ public class QuickstartArchetypeTest {
         cli.add("-Dandroid-plugin-version=3.5.0");
         verifier.executeGoal("org.apache.maven.plugins:maven-archetype-plugin:2.0:generate");
 
-
         // Check folder create.
-        verifier.assertFilePresent("android-test");
-        verifier.assertFilePresent("android-test/AndroidManifest.xml");
-        verifier.assertFilePresent("android-test/pom.xml");
-        verifier.assertFilePresent("android-test/res/values/strings.xml");
-        verifier.assertFilePresent("android-test/res/layout/main.xml");
-        verifier.assertFilePresent("android-test/assets");
-        verifier.assertFilePresent("android-test/src/main/java/android/archetypes/test/HelloAndroidActivity.java");
+        Helper.checkAppFolderStructureAndFiles(verifier, Constants.TEST_ARTIFACT_ID, Constants.TEST_GROUP_ID);
+        
+        Pom pomFile = new Pom("target/it/quickstart-default/android-test/pom.xml");
 
-
-        Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
-        Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<platform>16</platform>");
-        Helper.assertContains(new File("target/it/quickstart-default/android-test/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
-        Helper.assertContains(new File("target/it/quickstart-default/android-test/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
+        assertThat(pomFile)
+        	.isAndroidMavenPluginDeclared()
+        	.isAvdDeclared("test")
+        	.isPlatformDeclared(16);
+        
+        AndroidManifest manifest = new AndroidManifest("target/it/quickstart-default/android-test/AndroidManifest.xml");
+        
+        assertThat(manifest)
+        	.hasActivity(".HelloAndroidActivity")
+        	.hasPackage("android.archetypes.test")
+        	.hasTargetVersion(16);
 
         // Check that the Eclipse file is created (default.properties)
         Helper.assertContains(new File("target/it/quickstart-default/android-test/default.properties"), "target=android-16");
-
-        // Check the emulator part
-        Helper.assertContains(new File("target/it/quickstart-default/android-test/pom.xml"), "<avd>test</avd>");
     }
 
 

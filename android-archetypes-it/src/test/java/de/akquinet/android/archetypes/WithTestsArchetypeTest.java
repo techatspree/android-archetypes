@@ -14,6 +14,8 @@
  */
 package de.akquinet.android.archetypes;
 
+import static de.akquinet.android.archetypes.fest.AndroidArchetypeAssertions.assertThat;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -22,6 +24,9 @@ import org.apache.maven.it.VerificationException;
 import org.apache.maven.it.Verifier;
 import org.junit.Before;
 import org.junit.Test;
+
+import de.akquinet.android.archetypes.fest.AndroidManifest;
+import de.akquinet.android.archetypes.fest.Pom;
 
 
 public class WithTestsArchetypeTest {
@@ -61,35 +66,49 @@ public class WithTestsArchetypeTest {
 
 
         // Check folder create.
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID);
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml");
+        
         verifier.assertFilePresent("android-test/pom.xml");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/pom.xml");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it/pom.xml");
+        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it");
+        
+        
+        Pom mainPom = new Pom("target/it/with-test-default/android-test/pom.xml");
 
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/res/values/strings.xml");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/res/layout/main.xml");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/assets");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/src/main/java/android/archetypes/test/HelloAndroidActivity.java");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java");
+        assertThat(mainPom)
+        	.isPlatformDeclared(16)
+        	.isAndroidMavenPluginDeclared();
+       
+        //Checks about application
+       
+        Helper.checkAppFolderStructureAndFiles(verifier,"android-test/" + Constants.TEST_ARTIFACT_ID , Constants.TEST_GROUP_ID);
+        
+        Pom appPomFile = new Pom("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "/pom.xml");
 
+        assertThat(appPomFile)
+        	.isAndroidMavenPluginDeclared();
+        
+        AndroidManifest appManifest = new AndroidManifest("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml");
+        
+        assertThat(appManifest)
+        	.hasActivity(".HelloAndroidActivity")
+        	.hasPackage("android.archetypes.test")
+        	.hasTargetVersion(16);
+        
+        //Checks about instrumentation tests
+        
+        Pom itPomFile = new Pom("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/pom.xml");
 
-        Helper.assertContains(new File("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
-        Helper.assertContains(new File("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "/pom.xml"), "<platform>16</platform>");
-        Helper.assertContains(new File("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
-        Helper.assertContains(new File("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
+        assertThat(itPomFile)
+        	.isAndroidMavenPluginDeclared();
+        
+        AndroidManifest itManifest = new AndroidManifest("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml");
+        
+        assertThat(itManifest)
+        	.hasTargetPackage("android.archetypes.test")
+        	.isUsingAndroidTestRunner();
 
-        Helper.assertContains(new File("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
-        Helper.assertContains(new File("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/pom.xml"), "<platform>16</platform>");
-        Helper.assertContains(new File("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml"), "<uses-library android:name=\"android.test.runner\" />");
-        Helper.assertContains(new File("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml"), "<instrumentation android:targetPackage=\"android.archetypes.test\"");
-
+        //Misc checks
+        
         Helper.assertContains(new File("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java"), "super(HelloAndroidActivity.class);");
-
-
-
         Helper.assertContains(new File("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "/default.properties"), "target=android-16");
         Helper.assertContains(new File("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/default.properties"), "target=android-16");
 
@@ -126,31 +145,46 @@ public class WithTestsArchetypeTest {
 
 
         // Check folder create.
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID);
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml");
         verifier.assertFilePresent("android-test/pom.xml");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/pom.xml");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it/pom.xml");
+        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it");
 
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/res/values/strings.xml");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/res/layout/main.xml");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/assets");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/src/main/java/android/archetypes/test/HelloAndroidActivity.java");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java");
+        Pom mainPom = new Pom("target/it/with-test-with-platform/android-test/pom.xml");
 
+        assertThat(mainPom)
+        	.isPlatformDeclared(8)
+        	.isAndroidMavenPluginDeclared();
+        
+        //Checks about application
+        
+        Helper.checkAppFolderStructureAndFiles(verifier,"android-test/" + Constants.TEST_ARTIFACT_ID , Constants.TEST_GROUP_ID);
+        
+        Pom appPomFile = new Pom("target/it/with-test-with-platform/android-test/" + Constants.TEST_ARTIFACT_ID + "/pom.xml");
 
-        Helper.assertContains(new File("target/it/with-test-with-platform/android-test/" + Constants.TEST_ARTIFACT_ID + "/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
-        Helper.assertContains(new File("target/it/with-test-with-platform/android-test/" + Constants.TEST_ARTIFACT_ID + "/pom.xml"), "<platform>8</platform>");
-        Helper.assertContains(new File("target/it/with-test-with-platform/android-test/" + Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
-        Helper.assertContains(new File("target/it/with-test-with-platform/android-test/" + Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
+        assertThat(appPomFile)
+        	.isAndroidMavenPluginDeclared();
+        
+        AndroidManifest appManifest = new AndroidManifest("target/it/with-test-with-platform/android-test/" + Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml");
+        
+        assertThat(appManifest)
+        	.hasActivity(".HelloAndroidActivity")
+        	.hasPackage("android.archetypes.test")
+        	.hasTargetVersion(8);
+        
+        //Checks about instrumentation tests
+        
+        Pom itPomFile = new Pom("target/it/with-test-with-platform/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/pom.xml");
 
-        Helper.assertContains(new File("target/it/with-test-with-platform/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
-        Helper.assertContains(new File("target/it/with-test-with-platform/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/pom.xml"), "<platform>8</platform>");
-        Helper.assertContains(new File("target/it/with-test-with-platform/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml"), "<uses-library android:name=\"android.test.runner\" />");
-        Helper.assertContains(new File("target/it/with-test-with-platform/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml"), "<instrumentation android:targetPackage=\"android.archetypes.test\"");
+        assertThat(itPomFile)
+        	.isAndroidMavenPluginDeclared();
+        
+        AndroidManifest itManifest = new AndroidManifest("target/it/with-test-with-platform/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml");
+        
+        assertThat(itManifest)
+        	.hasTargetPackage("android.archetypes.test")
+        	.isUsingAndroidTestRunner();
 
+        //Misc checks
+        
         Helper.assertContains(new File("target/it/with-test-with-platform/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java"), "super(HelloAndroidActivity.class);");
 
     }
@@ -187,35 +221,49 @@ public class WithTestsArchetypeTest {
 
 
         // Check folder create.
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID);
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml");
         verifier.assertFilePresent("android-test/pom.xml");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/pom.xml");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it/pom.xml");
+        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it");
+        
+        Pom mainPom = new Pom("target/it/with-test-with-platform-and-package/android-test/pom.xml");
 
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/res/values/strings.xml");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/res/layout/main.xml");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/assets");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/src/main/java/foo/HelloAndroidActivity.java");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it/src/main/java/foo/test/HelloAndroidActivityTest.java");
+        assertThat(mainPom)
+        	.isPlatformDeclared(7)
+        	.isAndroidMavenPluginDeclared();
 
+        //Checks about application
+        
+        Helper.checkAppFolderStructureAndFiles(verifier,"android-test/" + Constants.TEST_ARTIFACT_ID , "foo");
+        
+        Pom appPomFile = new Pom("target/it/with-test-with-platform-and-package/android-test/" + Constants.TEST_ARTIFACT_ID + "/pom.xml");
+
+        assertThat(appPomFile)
+        	.isAndroidMavenPluginDeclared();
+        
+        AndroidManifest appManifest = new AndroidManifest("target/it/with-test-with-platform-and-package/android-test/" + Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml");
+        
+        assertThat(appManifest)
+        	.hasActivity(".HelloAndroidActivity")
+        	.hasPackage("foo")
+        	.hasTargetVersion(7);
+        
+        //Checks about instrumentation tests
+        
+        Pom itPomFile = new Pom("target/it/with-test-with-platform-and-package/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/pom.xml");
+
+        assertThat(itPomFile)
+        	.isAndroidMavenPluginDeclared();
+        
+        AndroidManifest itManifest = new AndroidManifest("target/it/with-test-with-platform-and-package/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml");
+        
+        assertThat(itManifest)
+        	.hasTargetPackage("foo")
+        	.isUsingAndroidTestRunner();
+
+        //Misc checks
+        
         Helper.assertContains(new File("target/it/with-test-with-platform-and-package/android-test/pom.xml"), "2.1.2");
-
-        Helper.assertContains(new File("target/it/with-test-with-platform-and-package/android-test/" + Constants.TEST_ARTIFACT_ID + "/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
-        Helper.assertContains(new File("target/it/with-test-with-platform-and-package/android-test/" + Constants.TEST_ARTIFACT_ID + "/pom.xml"), "<platform>7</platform>");
-        Helper.assertContains(new File("target/it/with-test-with-platform-and-package/android-test/" + Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
-        Helper.assertContains(new File("target/it/with-test-with-platform-and-package/android-test/" + Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "package=\"foo\"");
-
-        Helper.assertContains(new File("target/it/with-test-with-platform-and-package/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
-        Helper.assertContains(new File("target/it/with-test-with-platform-and-package/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/pom.xml"), "<platform>7</platform>");
-        Helper.assertContains(new File("target/it/with-test-with-platform-and-package/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml"), "<uses-library android:name=\"android.test.runner\" />");
-        Helper.assertContains(new File("target/it/with-test-with-platform-and-package/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml"), "<instrumentation android:targetPackage=\"foo\"");
-
         Helper.assertContains(new File("target/it/with-test-with-platform-and-package/android-test/" + Constants.TEST_ARTIFACT_ID + "/default.properties"), "target=android-7");
         Helper.assertContains(new File("target/it/with-test-with-platform-and-package/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/default.properties"), "target=android-7");
-
         Helper.assertContains(new File("target/it/with-test-with-platform-and-package/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/src/main/java/foo/test/HelloAndroidActivityTest.java"), "super(\"foo\", HelloAndroidActivity.class);");
     }
 
@@ -228,7 +276,7 @@ public class WithTestsArchetypeTest {
     @Test
     public void testWithTestWithEmulator() throws VerificationException, IOException {
 
-        File root = Helper.prepareDirectory("with-test-default");
+        File root = Helper.prepareDirectory("with-test-emulator");
 
         Verifier verifier  = new Verifier( root.getAbsolutePath(), false );
         verifier.setAutoclean(false);
@@ -251,38 +299,49 @@ public class WithTestsArchetypeTest {
 
 
         // Check folder create.
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID);
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml");
         verifier.assertFilePresent("android-test/pom.xml");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/pom.xml");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it/pom.xml");
+        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it");
+        
+        Pom mainPom = new Pom("target/it/with-test-emulator/android-test/pom.xml");
 
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/res/values/strings.xml");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/res/layout/main.xml");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/assets");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/src/main/java/android/archetypes/test/HelloAndroidActivity.java");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java");
+        assertThat(mainPom)
+        	.isPlatformDeclared(16)
+        	.isAvdDeclared("test")
+        	.isAndroidMavenPluginDeclared();
 
+        //Checks about application
+        
+        Helper.checkAppFolderStructureAndFiles(verifier,"android-test/" + Constants.TEST_ARTIFACT_ID , Constants.TEST_GROUP_ID);
+        
+        Pom appPomFile = new Pom("target/it/with-test-emulator/android-test/" + Constants.TEST_ARTIFACT_ID + "/pom.xml");
 
-        Helper.assertContains(new File("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
-        Helper.assertContains(new File("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "/pom.xml"), "<platform>16</platform>");
-        Helper.assertContains(new File("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
-        Helper.assertContains(new File("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
+        assertThat(appPomFile)
+        	.isAndroidMavenPluginDeclared();
+        
+        AndroidManifest appManifest = new AndroidManifest("target/it/with-test-emulator/android-test/" + Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml");
+        
+        assertThat(appManifest)
+        	.hasActivity(".HelloAndroidActivity")
+        	.hasPackage("android.archetypes.test")
+        	.hasTargetVersion(16);
+        
+        //Checks about instrumentation tests
+        
+        Pom itPomFile = new Pom("target/it/with-test-emulator/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/pom.xml");
 
-        Helper.assertContains(new File("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
-        Helper.assertContains(new File("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/pom.xml"), "<platform>16</platform>");
-        Helper.assertContains(new File("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml"), "<uses-library android:name=\"android.test.runner\" />");
-        Helper.assertContains(new File("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml"), "<instrumentation android:targetPackage=\"android.archetypes.test\"");
+        assertThat(itPomFile)
+        	.isAndroidMavenPluginDeclared();
+        
+        AndroidManifest itManifest = new AndroidManifest("target/it/with-test-emulator/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml");
+        
+        assertThat(itManifest)
+        	.hasTargetPackage("android.archetypes.test")
+        	.isUsingAndroidTestRunner();
 
-        Helper.assertContains(new File("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java"), "super(HelloAndroidActivity.class);");
-
-        Helper.assertContains(new File("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "/default.properties"), "target=android-16");
-        Helper.assertContains(new File("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/default.properties"), "target=android-16");
-
-        Helper.assertContains(new File("target/it/with-test-default/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/pom.xml"), "<avd>test</avd>");
-
+        //Misc checks
+        Helper.assertContains(new File("target/it/with-test-emulator/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java"), "super(HelloAndroidActivity.class);");
+        Helper.assertContains(new File("target/it/with-test-emulator/android-test/" + Constants.TEST_ARTIFACT_ID + "/default.properties"), "target=android-16");
+        Helper.assertContains(new File("target/it/with-test-emulator/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/default.properties"), "target=android-16");
     }
 
     /**
@@ -293,7 +352,7 @@ public class WithTestsArchetypeTest {
     @Test
     public void testWithTestConstructorCorrectness() throws VerificationException, IOException {
 
-        File root = Helper.prepareDirectory("with-test-with-platform");
+        File root = Helper.prepareDirectory("with-test-with-platform2");
 
         Verifier verifier  = new Verifier( root.getAbsolutePath(), false );
         verifier.setAutoclean(false);
@@ -316,32 +375,47 @@ public class WithTestsArchetypeTest {
 
 
         // Check folder create.
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID);
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml");
         verifier.assertFilePresent("android-test/pom.xml");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/pom.xml");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it/pom.xml");
+        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it");
+        
+        Pom mainPom = new Pom("target/it/with-test-with-platform2/android-test/pom.xml");
 
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/res/values/strings.xml");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/res/layout/main.xml");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/assets");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "/src/main/java/android/archetypes/test/HelloAndroidActivity.java");
-        verifier.assertFilePresent("android-test/" + Constants.TEST_ARTIFACT_ID + "-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java");
+        assertThat(mainPom)
+        	.isPlatformDeclared(7)
+        	.isAndroidMavenPluginDeclared();
 
+        //Checks about application
+        
+        Helper.checkAppFolderStructureAndFiles(verifier,"android-test/" + Constants.TEST_ARTIFACT_ID , Constants.TEST_GROUP_ID);
+        
+        Pom appPomFile = new Pom("target/it/with-test-with-platform2/android-test/" + Constants.TEST_ARTIFACT_ID + "/pom.xml");
 
-        Helper.assertContains(new File("target/it/with-test-with-platform/android-test/" + Constants.TEST_ARTIFACT_ID + "/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
-        Helper.assertContains(new File("target/it/with-test-with-platform/android-test/" + Constants.TEST_ARTIFACT_ID + "/pom.xml"), "<platform>7</platform>");
-        Helper.assertContains(new File("target/it/with-test-with-platform/android-test/" + Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "<activity android:name=\".HelloAndroidActivity\">");
-        Helper.assertContains(new File("target/it/with-test-with-platform/android-test/" + Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml"), "package=\"android.archetypes.test\"");
+        assertThat(appPomFile)
+        	.isAndroidMavenPluginDeclared();
+        
+        AndroidManifest appManifest = new AndroidManifest("target/it/with-test-with-platform2/android-test/" + Constants.TEST_ARTIFACT_ID + "/AndroidManifest.xml");
+        
+        assertThat(appManifest)
+        	.hasActivity(".HelloAndroidActivity")
+        	.hasPackage("android.archetypes.test")
+        	.hasTargetVersion(7);
+        
+        //Checks about instrumentation tests
+        
+        Pom itPomFile = new Pom("target/it/with-test-with-platform2/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/pom.xml");
 
-        Helper.assertContains(new File("target/it/with-test-with-platform/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/pom.xml"), "<artifactId>android-maven-plugin</artifactId>");
-        Helper.assertContains(new File("target/it/with-test-with-platform/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/pom.xml"), "<platform>7</platform>");
-        Helper.assertContains(new File("target/it/with-test-with-platform/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml"), "<uses-library android:name=\"android.test.runner\" />");
-        Helper.assertContains(new File("target/it/with-test-with-platform/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml"), "<instrumentation android:targetPackage=\"android.archetypes.test\"");
+        assertThat(itPomFile)
+        	.isAndroidMavenPluginDeclared();
+        
+        AndroidManifest itManifest = new AndroidManifest("target/it/with-test-with-platform2/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/AndroidManifest.xml");
+        
+        assertThat(itManifest)
+        	.hasTargetPackage("android.archetypes.test")
+        	.isUsingAndroidTestRunner();
 
-        Helper.assertContains(new File("target/it/with-test-with-platform/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java"), "super(\"android.archetypes.test\", HelloAndroidActivity.class);");
+        //Misc checks
+
+        Helper.assertContains(new File("target/it/with-test-with-platform2/android-test/" + Constants.TEST_ARTIFACT_ID + "-it/src/main/java/android/archetypes/test/test/HelloAndroidActivityTest.java"), "super(\"android.archetypes.test\", HelloAndroidActivity.class);");
 
     }
 }

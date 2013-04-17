@@ -6,13 +6,10 @@
 
   <requiredProperties>
     <requiredProperty key="platform">
-      <defaultValue>10</defaultValue>
-    </requiredProperty>
-    <requiredProperty key="emulator">
-      <defaultValue>not-specified</defaultValue>
+      <defaultValue>16</defaultValue>
     </requiredProperty>
     <requiredProperty key="android-plugin-version">
-      <defaultValue>3.5.0</defaultValue>
+      <defaultValue>3.5.3</defaultValue>
     </requiredProperty>
   </requiredProperties>
 
