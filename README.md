@@ -4,7 +4,7 @@ android-archetypes
 This projects provides several Maven archetypes for Android. Those archetypes allows to quickly bootstrap a Maven project
 to develop an android application.
 
-These artifacts are based on the android-maven-plugin (http://code.google.com/p/maven-android-plugin/). It currently uses the 3.5.0 version.
+These artifacts are based on the android-maven-plugin (http://code.google.com/p/maven-android-plugin/). It currently uses the 3.5.3 version.
 
 The android-quickstart archetype
 --------------------------------
@@ -20,17 +20,17 @@ way to initiate an android project:
 
 You can also set three optional properties :
 
-* The created 'package' with '-Dpackage=your.company.android'. By default it uses the given groupId.
-* The Android emulator's name to use with '-Demulator=my-avd'. If none specified the property <emulator> will be ignored in the pom file.
-* The targeted Android platform with '-Dplatform=7'. The Android SDK version will be automatically fetched to fit the corresponding API level. Available API Level are 3, 4, 7, 8, 9, 10, 14 and 16. By default, it uses 16 (android 4.1.1.4).
+* The created 'package' with `-Dpackage=your.company.android`. By default it uses the given groupId.
+* The Android emulator's name to use with `-Demulator=my-avd`. If none specified the property <emulator> will be ignored in the pom file.
+* The targeted Android platform with `-Dplatform=X`. The Android SDK version will be automatically fetched to fit the corresponding API level. Available API Level are 3, 4, 7, 8, 9, 10, 14 and 16. By default, it uses 16 (android 4.1.1.4).
 
-Once generated, the application is ready to be built and deployed (you may need to configure your ANDROID_HOME environment variable to point to your Android SDK). Start an android emulator, or plug an Android dev phone,
+Once generated, the application is ready to be built and deployed (you may need to configure your `ANDROID_HOME`environment variable to point to your Android SDK). Start an android emulator, or plug an Android dev phone,
 and launch:
 
     cd my-android-application
-    mvn clean install android:deploy
+    mvn clean install android:deploy android:run
 
-The application will be built and deployed on the device.
+The application will be built, deployed and launched on the device.
 
 The android-with-test archetype
 -------------------------------
@@ -46,8 +46,11 @@ This archetype creates a multi-module project containing an android application 
       -DartifactId=my-android-project \
       -Dpackage=com.foo.bar.android
 
-The 'package' value is optional (by default use the groupId). You can also set the targeted Android platform with
-'-Dplatform=x'. By default, it uses 16 (android 4.1.1.4).
+You can also set three optional properties :
+
+* The created 'package' with `-Dpackage=your.company.android`. By default it uses the given groupId.
+* The Android emulator's name to use with `-Demulator=my-avd`. If none specified the property <emulator> will be ignored in the pom file.
+* The targeted Android platform with `-Dplatform=X`. The Android SDK version will be automatically fetched to fit the corresponding API level. Available API Level are 3, 4, 7, 8, 9, 10, 14 and 16. By default, it uses 16 (android 4.1.1.4).
 
 Once generated, the application is ready to be built and tested. Start an android emulator, or plug an Android dev phone,
 and launch:
@@ -56,10 +59,14 @@ and launch:
     mvn clean install
 
 The application will be built, then the integration-tests will be built and executed on the Android device.
+If you whish to launch just the application:
+
+	cd my-android-project
+	mvn clean install android:deploy android:run
 
 The android-library-quickstart archetype
 ----------------------------------------
-The library quickstart archetype creates a simple android library ready to be used with another android application. It's a pretty simple
+The library quickstart archetype creates a simple Android library ready to be used with another Android application. It's a pretty simple
 way to initiate an android project:
 
     mvn archetype:generate \
@@ -71,15 +78,13 @@ way to initiate an android project:
 
 You can also set three optional properties :
 
-* The created 'package' with '-Dpackage=your.company.android'. By default it uses the given groupId.
-* The Android emulator's name to use with '-Demulator=my-avd'. If none specified the property <emulator> will be ignored in the pom file.
-* The targeted Android platform with '-Dplatform=7'. The Android SDK version will be automatically fetched to fit the corresponding API level. Available API Level are 3, 4, 7, 8, 9, 10 and 14. By default, it uses 10 (android 2.3.3).
+* The created 'package' with `-Dpackage=your.company.android`. By default it uses the given groupId.
+* The targeted Android platform with `-Dplatform=7`. The Android SDK version will be automatically fetched to fit the corresponding API level. Available API Level are 3, 4, 7, 8, 9, 10 and 14. By default, it uses 10 (android 2.3.3).
 
 Once generated, the library is ready to be built:
 
     cd my-android-application
     mvn clean install
-
 The android-release archetype
 ----------------------------
 
@@ -93,10 +98,13 @@ This archetype extends `android-with-test` with release management.
       -DartifactId=my-android-project \
       -Dpackage=com.foo.bar.android
 
-The 'package' value is optional (by default use the groupId). You can also set the targeted Android platform with
-'-Dplatform=x'. By default, it uses 16 (android 4.1.1.4).
+You can also set three optional properties :
 
-Once generated, the application is ready to be built and tested. Start an android emulator, or plug an Android dev phone,
+* The created 'package' with `-Dpackage=your.company.android`. By default it uses the given groupId.
+* The Android emulator's name to use with `-Demulator=my-avd`. If none specified the property <emulator> will be ignored in the pom file.
+* The targeted Android platform with `-Dplatform=X`. The Android SDK version will be automatically fetched to fit the corresponding API level. Available API Level are 3, 4, 7, 8, 9, 10, 14 and 16. By default, it uses 16 (android 4.1.1.4).
+
+Once generated, the application is ready to be built and tested. Start an Android emulator, or plug an Android dev phone,
 and launch:
 
     cd my-android-project
@@ -104,8 +112,15 @@ and launch:
 
 The application will be built, then the integration-tests will be built and executed on the Android device.
 
+If you whish to launch just the application:
+
+	cd my-android-project
+	mvn clean install android:deploy android:run
+
+By default the app is built in "debug mode". This means  `BuildCongif.DEBUG` is `true` and `android:debuggable="true"` and the apk is signed with the debug key (`~/.android/debug.keystore`).
+
 When you release your application, it will generate a signed, zipaligned and [ProGuard](http://proguard.sourceforge.net)-processed apk.
-You will have to add a profile to your `settings.xml` containing the signing informations:
+You will have to add a profile to your `~/.m2/settings.xml` file containing the signing informations:
 
     <profile>
       <id>android-release</id>
@@ -117,22 +132,15 @@ You will have to add a profile to your `settings.xml` containing the signing inf
       </properties>
     </profile>
 
-or directly pass those properties through the command line:
+At this point you can generate a signed apk using the Maven release plugin:
 
     mvn release:prepare
-    mvn release:perform -Dsign.keystore=/path/to/keystore \
-                        -Dsign.alias=key-alias \
-                        -Dsign.storepass=keystore-password \
-                        -Dsign.keypass=key-password
+    mvn release:perform -DreleaseProfiles=android release,release
     mvn release:clean
 
-The archetype contains a test key store which *MUST NOT BE USED IN PRODUCTION*. However you can use it for testing:
+Or, if you wish to generate a signed apk without performing the whole release process:
 
-    mvn clean install -Prelease \
-    -Dsign.keystore=PATH_OF_THE_PROJECT/my-android-project/test-key.keystore \
-    -Dsign.alias=mykey \
-    -Dsign.storepass=testtest \
-    -Dsign.keypass=testtest
+	mvn clean deploy -Pandroid-release,release
 
 Be aware that Android cannot re-deploy artifacts using a different key, so be sure to undeploy all artifacts before running the
 release.
@@ -151,7 +159,7 @@ The android-gcm-quickstart creates a simple Google Cloud Messaging application.
 
 The 'senderId' value is found in the [Google APIs console](https://code.google.com/apis/console).
 You can also set one optional property :
-* The URL of your GCM server, with '-DgcmReceiverUrl=http://my-gcm-server'. By default it uses the local test server provided by the gcmutils-maven-plugin.
+* The URL of your GCM server, with `-DgcmReceiverUrl=http://my-gcm-server`. By default it uses the local test server provided by the gcmutils-maven-plugin.
 
 Generated files includes the assets/gcmutils.properties configuration file, containing GCM specific values.
 Once generated, the library is ready to be built with:
@@ -159,7 +167,7 @@ Once generated, the library is ready to be built with:
     cd my-android-application
     mvn clean install
 
-Before starting the test server add the API Key configuration. This can be added in the user settings file, .m2/settings.xml, by system property '-DapiKey=' or in the pom.xml (not recommended).
+Before starting the test server add the API Key configuration. This can be added in the user settings file, `~/.m2/settings.xml`, by system property `-DapiKey=` or in the pom.xml (not recommended).
 When the key is added, you can start the GCM test server:
 
     mvn gcmutils:run-server

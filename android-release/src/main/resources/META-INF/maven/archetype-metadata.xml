@@ -1,112 +1,98 @@
-<archetype-descriptor xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
-    name="android-release">
+<archetype-descriptor
+	xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
+	name="android-release">
 
-    <requiredProperties>
-        <requiredProperty key="platform">
-            <defaultValue>16</defaultValue>
-        </requiredProperty>
-        <requiredProperty key="emulator">
-            <defaultValue>not-specified</defaultValue>
-        </requiredProperty>
-        <requiredProperty key="android-plugin-version">
-            <defaultValue>3.5.0</defaultValue>
-        </requiredProperty>
-    </requiredProperties>
+	<requiredProperties>
+		<requiredProperty key="platform">
+			<defaultValue>16</defaultValue>
+		</requiredProperty>
+		<requiredProperty key="emulator">
+			<defaultValue>not-specified</defaultValue>
+		</requiredProperty>
+		<requiredProperty key="android-plugin-version">
+			<defaultValue>3.5.3</defaultValue>
+		</requiredProperty>
+	</requiredProperties>
 
-    <fileSets>
-        <!-- Key Store -->
-        <fileSet filtered="false">
-            <directory></directory>
-            <includes>
-                <include>test-key.keystore</include>
-            </includes>
-        </fileSet>
-    </fileSets>
+	<modules>
+		<module id="${rootArtifactId}" dir="__rootArtifactId__" name="${rootArtifactId}">
+			<fileSets>
+				<fileSet filtered="true" packaged="true" encoding="UTF-8">
+					<directory>src/main/java</directory>
+					<includes>
+						<include>**/*.java</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" encoding="UTF-8">
+					<directory>res</directory>
+					<includes>
+						<include>**/*.xml</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="false" encoding="UTF-8">
+					<directory>res</directory>
+					<includes>
+						<include>**/*.png</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="false" encoding="UTF-8">
+					<directory>assets</directory>
+					<includes>
+						<include>**/*</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" encoding="UTF-8">
+					<directory></directory>
+					<includes>
+						<include>*.xml</include>
+						<include>*.conf</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" encoding="UTF-8">
+					<directory></directory>
+					<includes>
+						<include>*.properties</include>
+					</includes>
+				</fileSet>
+			</fileSets>
+		</module>
 
-    <modules>
-        <module id="${rootArtifactId}" dir="__rootArtifactId__" name="${rootArtifactId}">
-            <fileSets>
-                <fileSet filtered="true" packaged="true" encoding="UTF-8">
-                    <directory>src/main/java</directory>
-                    <includes>
-                        <include>**/*.java</include>
-                    </includes>
-                </fileSet>
-                <fileSet filtered="true" encoding="UTF-8">
-                    <directory>res</directory>
-                    <includes>
-                        <include>**/*.xml</include>
-                    </includes>
-                </fileSet>
-                <fileSet filtered="false" encoding="UTF-8">
-                    <directory>res</directory>
-                    <includes>
-                        <include>**/*.png</include>
-                    </includes>
-                </fileSet>
-                <fileSet filtered="false" encoding="UTF-8">
-                    <directory>assets</directory>
-                    <includes>
-                        <include>**/*</include>
-                    </includes>
-                </fileSet>
-                <fileSet filtered="true" encoding="UTF-8">
-                    <directory></directory>
-                    <includes>
-                        <include>*.xml</include>
-                        <include>*.conf</include>
-                    </includes>
-                </fileSet>
-                <fileSet filtered="true" encoding="UTF-8">
-                    <directory></directory>
-                    <includes>
-                        <include>*.properties</include>
-                    </includes>
-                </fileSet>
-                <fileSet filtered="true" encoding="UTF-8">
-                    <directory>androlog</directory>
-                    <includes>
-                        <include>*.properties</include>
-                    </includes>
-                </fileSet>
-            </fileSets>
-        </module>
-
-        <module id="${rootArtifactId}-it" dir="__rootArtifactId__-it" name="${rootArtifactId}-it">
-            <fileSets>
-                <fileSet filtered="true" packaged="true" encoding="UTF-8">
-                    <directory>src/main/java</directory>
-                    <includes>
-                        <include>**/*.java</include>
-                    </includes>
-                </fileSet>
-                <fileSet filtered="true" encoding="UTF-8">
-                    <directory>res</directory>
-                    <includes>
-                        <include>**/*.xml</include>
-                    </includes>
-                </fileSet>
-                <fileSet filtered="false" encoding="UTF-8">
-                    <directory>res</directory>
-                    <includes>
-                        <include>**/*.png</include>
-                    </includes>
-                </fileSet>
-                <fileSet filtered="true" encoding="UTF-8">
-                    <directory></directory>
-                    <includes>
-                        <include>*.xml</include>
-                    </includes>
-                </fileSet>
-                <fileSet filtered="true" encoding="UTF-8">
-                    <directory></directory>
-                    <includes>
-                        <include>*.properties</include>
-                    </includes>
-                </fileSet>
-            </fileSets>
-        </module>
-    </modules>
+		<module id="${rootArtifactId}-it" dir="__rootArtifactId__-it"
+			name="${rootArtifactId}-it">
+			<fileSets>
+				<fileSet filtered="true" packaged="true" encoding="UTF-8">
+					<directory>src/main/java</directory>
+					<includes>
+						<include>**/*.java</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" encoding="UTF-8">
+					<directory>res</directory>
+					<includes>
+						<include>**/*.xml</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="false" encoding="UTF-8">
+					<directory>res</directory>
+					<includes>
+						<include>**/*.png</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" encoding="UTF-8">
+					<directory></directory>
+					<includes>
+						<include>*.xml</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" encoding="UTF-8">
+					<directory></directory>
+					<includes>
+						<include>*.properties</include>
+					</includes>
+				</fileSet>
+			</fileSets>
+		</module>
+	</modules>
 </archetype-descriptor>

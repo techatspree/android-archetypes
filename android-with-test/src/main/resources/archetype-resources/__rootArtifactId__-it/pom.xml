@@ -1,74 +1,69 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>${groupId}</groupId>
-    <artifactId>${rootArtifactId}-parent</artifactId>
-    <version>${version}</version>
-  </parent>
+	<parent>
+		<groupId>${groupId}</groupId>
+		<artifactId>${rootArtifactId}-parent</artifactId>
+		<version>${version}</version>
+	</parent>
 
-  <groupId>${groupId}</groupId>
-  <artifactId>${artifactId}-it</artifactId>
-  <version>${version}</version>
-  <packaging>apk</packaging>
-  <name>${artifactId} - Integration tests</name>
+	<groupId>${groupId}</groupId>
+	<artifactId>${artifactId}</artifactId>
+	<version>${version}</version>
+	<packaging>apk</packaging>
+	<name>${artifactId} - Integration tests</name>
 
-  <dependencies>
-    <dependency>
-      <groupId>com.google.android</groupId>
-      <artifactId>android-test</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>${groupId}</groupId>
-      <artifactId>${rootArtifactId}</artifactId>
-      <type>apk</type>
-      <version>${version}</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>${groupId}</groupId>
-      <artifactId>${rootArtifactId}</artifactId>
-      <type>jar</type>
-      <version>${version}</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-    </dependency>
-  </dependencies>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>com.jayway.maven.plugins.android.generation2</groupId>
-        <artifactId>android-maven-plugin</artifactId>
-        <configuration>
-          <androidManifestFile>${project.basedir}/AndroidManifest.xml</androidManifestFile>
-          <assetsDirectory>${project.basedir}/assets</assetsDirectory>
-          <resourceDirectory>${project.basedir}/res</resourceDirectory>
-          <nativeLibrariesDirectory>${project.basedir}/src/main/native</nativeLibrariesDirectory>
-          <sdk>
-            <platform>${platform}</platform>
-          </sdk>
-          #if(${emulator} != "not-specified")
-          <emulator>
-            <avd>${emulator}</avd>
-          </emulator>
-          #end
-          <undeployBeforeDeploy>true</undeployBeforeDeploy>
-        </configuration>
-        <extensions>true</extensions>
-      </plugin>
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.5</source>
-          <target>1.5</target>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
+	<dependencies>
+		<dependency>
+			<groupId>com.google.android</groupId>
+			<artifactId>android-test</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>${groupId}</groupId>
+			<artifactId>${rootArtifactId}</artifactId>
+			<type>apk</type>
+			<version>${version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>${groupId}</groupId>
+			<artifactId>${rootArtifactId}</artifactId>
+			<type>jar</type>
+			<version>${version}</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<finalName>${project.artifactId}</finalName>
+		<plugins>
+			<plugin>
+				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
+				<artifactId>android-maven-plugin</artifactId>
+				<configuration>
+					<test>
+						<!--<skip>true|false|auto</skip> -->
+						<!--<instrumentationPackage>packageName</instrumentationPackage> -->
+						`
+						<!--<instrumentationRunner>className</instrumentationRunner> -->
+						<!--<debug>true|false</debug> -->
+						<!--<coverage>true|false</coverage> -->
+						<!--<logonly>true|false</logonly> avd -->
+						<!--<testsize>small|medium|large</testsize> -->
+						<createReport>true</createReport>
+						<!--<classes> -->
+						<!--<class>your.package.name.YourTestClass</class> -->
+						<!--</classes> -->
+						<!--<packages> -->
+						<!--<package>your.package.name</package> -->
+						<!--</packages> -->
+					</test>
+				</configuration>
+				<extensions>true</extensions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
