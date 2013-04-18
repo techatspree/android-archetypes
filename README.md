@@ -135,7 +135,7 @@ You will have to add a profile to your `~/.m2/settings.xml` file containing the 
 At this point you can generate a signed apk using the Maven release plugin:
 
     mvn release:prepare
-    mvn release:perform -DreleaseProfiles=android release,release
+    mvn release:perform -DreleaseProfiles=android-release,release
     mvn release:clean
 
 Or, if you wish to generate a signed apk without performing the whole release process:
