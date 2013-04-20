@@ -14,7 +14,7 @@ way to initiate an android project:
     mvn archetype:generate \
       -DarchetypeArtifactId=android-quickstart \
       -DarchetypeGroupId=de.akquinet.android.archetypes \
-      -DarchetypeVersion=1.0.9 \
+      -DarchetypeVersion=1.0.10 \
       -DgroupId=your.company \
       -DartifactId=my-android-application
 
@@ -41,7 +41,7 @@ This archetype creates a multi-module project containing an android application 
     mvn archetype:generate \
       -DarchetypeArtifactId=android-with-test \
       -DarchetypeGroupId=de.akquinet.android.archetypes \
-      -DarchetypeVersion=1.0.9 \
+      -DarchetypeVersion=1.0.10 \
       -DgroupId=com.foo.bar \
       -DartifactId=my-android-project \
       -Dpackage=com.foo.bar.android
@@ -72,7 +72,7 @@ way to initiate an android project:
     mvn archetype:generate \
       -DarchetypeArtifactId=android-library-quickstart \
       -DarchetypeGroupId=de.akquinet.android.archetypes \
-      -DarchetypeVersion=1.0.9 \
+      -DarchetypeVersion=1.0.10 \
       -DgroupId=your.company \
       -DartifactId=my-android-application
 
@@ -93,7 +93,7 @@ This archetype extends `android-with-test` with release management.
     mvn archetype:generate \
       -DarchetypeArtifactId=android-release \
       -DarchetypeGroupId=de.akquinet.android.archetypes \
-      -DarchetypeVersion=1.0.9 \
+      -DarchetypeVersion=1.0.10 \
       -DgroupId=com.foo.bar \
       -DartifactId=my-android-project \
       -Dpackage=com.foo.bar.android
@@ -135,7 +135,7 @@ You will have to add a profile to your `~/.m2/settings.xml` file containing the 
 At this point you can generate a signed apk using the Maven release plugin:
 
     mvn release:prepare
-    mvn release:perform -DreleaseProfiles=android release,release
+    mvn release:perform -DreleaseProfiles=android-release,release
     mvn release:clean
 
 Or, if you wish to generate a signed apk without performing the whole release process:
@@ -152,7 +152,7 @@ The android-gcm-quickstart creates a simple Google Cloud Messaging application.
     mvn archetype:generate \
       -DarchetypeArtifactId=android-gcm-quickstart \
       -DarchetypeGroupId=de.akquinet.android.archetypes \
-      -DarchetypeVersion=1.0.9 \
+      -DarchetypeVersion=1.0.10 \
       -DgroupId=your.company \
       -DartifactId=my-android-application
       -DsenderId=my-sender-id
