@@ -145,6 +145,7 @@
 							<!-- Change to true to skip Proguard -->
 							<proguard>
 								<skip>false</skip>
+								<config>proguard.conf</config>
 							</proguard>
 						</configuration>
 						<executions>
