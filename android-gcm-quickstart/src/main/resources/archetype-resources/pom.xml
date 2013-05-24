@@ -75,6 +75,7 @@
 					</emulator>
 					#end
 				</configuration>
+				<extensions>true</extensions>
 			</plugin>
 
 			<plugin>
