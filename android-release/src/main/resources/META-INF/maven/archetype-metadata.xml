@@ -12,7 +12,7 @@
 			<defaultValue>not-specified</defaultValue>
 		</requiredProperty>
 		<requiredProperty key="android-plugin-version">
-			<defaultValue>3.6.0</defaultValue>
+			<defaultValue>3.8.2</defaultValue>
 		</requiredProperty>
 	</requiredProperties>
 
