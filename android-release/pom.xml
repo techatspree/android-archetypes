@@ -18,13 +18,13 @@
   <parent>
     <groupId>de.akquinet.android.archetypes</groupId>
     <artifactId>android-archetype-project</artifactId>
-    <version>1.0.12-SNAPSHOT</version>
+    <version>1.0.12</version>
     <relativePath>../pom.xml</relativePath>
   </parent>
 
   <groupId>de.akquinet.android.archetypes</groupId>
   <artifactId>android-release</artifactId>
-  <version>1.0.12-SNAPSHOT</version>
+  <version>1.0.12</version>
   <name>Akquinet Android Archetype - android-release</name>
   <description>Creates a skeleton for an Android application,
     instrumentation tests and ready-to-publish application on releases.</description>
